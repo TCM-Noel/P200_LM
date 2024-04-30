@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>BreackOut 23-24
+        </title>
+        <link rel="stylesheet" href="css\estils.css">
+     
+    </head>
+<html>
+<body>
+    <div id="principal">
+      
+            <canvas id="joc"></canvas>
+
+    
+    
+    
+    </div>
+</body>
+
+
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/joc.js"></script>
+<script src="js/bola.js"></script>
+<script src="js/punt.js"></script>
+<script src="js/pala.js"></script>
+<script src="js/totxo.js"></script>
+<script src="js/mur.js"></script>
+<script src="js/segment.js"></script>
+<script src="js/app.js"></script>
+
+</html>

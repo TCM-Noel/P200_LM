@@ -1,0 +1,55 @@
+* { padding: 0; margin: 0; }
+
+body {
+    text-align: center;
+    background: #333 url(../images/20151006051016_votacion-estrellas-css.jpg);
+    color: #eee;
+	background-size: cover;
+}
+
+#principal{
+	width: 960px;
+	margin: 20px auto;
+  	padding: 20px;
+}
+
+#joc{
+	position:relative;
+	margin-top: 40px;
+	width:740px;
+	height:400px;
+	background: rgba(232, 232, 232, 0.5);
+	display: block; 
+	margin: 0 auto;
+}
+#inici, #fi{
+	position:absolute;
+	left: 275px; top: 50px;
+	width: 400px; height: 300px;
+	margin: 200px auto;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1.3em;
+	text-align:center;
+	border:thick #990 solid;
+	border-radius: 25px;
+	background-color: #CFC;  
+	opacity: 0.9;
+}
+.dreta{
+	text-align:right;
+}
+#game {
+	background-color: #eee;  /* color gris clar  */
+	border: #666 50px solid;
+	border-bottom-width: 0;
+	display: block;
+	margin: 0 auto;
+}
+
+#capçalera{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size: 1.2em;
+	background-color:#A3A352;  /* rgb(163,163,82) */
+	height: 200px;
+	border-radius:25px;
+}
