@@ -14,7 +14,11 @@ class Pala {
     }
 
     update(){
+<<<<<<< HEAD
         
+=======
+       //s
+>>>>>>> fc4e228324e3bf59b8e8913ed5176cffbbfe8f8e
     }
    
     draw(ctx) {
