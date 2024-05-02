@@ -1,11 +1,11 @@
 class Bola {
+    
     constructor(puntPosicio, radi) {
-        this.radi = radi;
         this.posicio = puntPosicio;
+        this.radi = radi;
         this.vx = 1;
         this.vy = -1;
         this.color = "#fff";
-      
     };
 
     draw(ctx) {
@@ -15,12 +15,13 @@ class Bola {
         ctx.fill();
         ctx.closePath();
     }
+
     mou(x,y){
         this.posicio.x += x;
         this.posicio.y += y;
     }
-    update(){
 
+    update(){
         let puntActual = this.posicio;
         let puntSeguent= new Punt(this.posicio.x + this.vx,
                             this.posicio.y + this.vy);
@@ -28,8 +29,7 @@ class Bola {
         let exces;
         let xoc = false;
         
-
-        //Xoc amb els laterals del canvas
+        //XOC LATERALM AMB EL CANVAS
         //Xoc lateral superior
         if(trajectoria.puntB.y - this.radi < 0){
             exces= (trajectoria.puntB.y - this.radi)/this.vy;
@@ -46,7 +46,6 @@ class Bola {
 
         //Xoc amb els totxos del mur
         //Utilitzem el mètode INTERSECCIOSEGMENTRECTANGLE
-        
 
         if (!xoc){
             this.posicio.x = trajectoria.puntB.x;
@@ -76,7 +75,6 @@ class Bola {
        //vora esquerra
       
        //vora dreta
-      
 
        //2n REVISAR SI EXISTEIX UN PUNT D'INTERSECCIÓ EN UN DELS 4 SEGMENTS
        //SI EXISTEIX, QUIN ÉS AQUEST PUNT
