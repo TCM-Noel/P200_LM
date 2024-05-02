@@ -1,7 +1,7 @@
 class Bola {
     constructor(puntPosicio, radi) {
-        this.radi = radi;
         this.posicio = puntPosicio;
+        this.radi = radi;
         this.vx = 1;
         this.vy = -1;
         this.color = "#fff";
@@ -29,7 +29,7 @@ class Bola {
         let xoc = false;
         
 
-        //Xoc amb els laterals del canvas
+        //XOC LATERALM AMB EL CANVAS
         //Xoc lateral superior
         if(trajectoria.puntB.y - this.radi < 0){
             exces= (trajectoria.puntB.y - this.radi)/this.vy;
