@@ -3,6 +3,7 @@
 */
 
 class Mur {
+    
     constructor() {
         
     }
@@ -10,6 +11,7 @@ class Mur {
     generaMur(){
        
     }
+
     draw(ctx){
        
     }

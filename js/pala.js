@@ -3,6 +3,7 @@
 */
 
 class Pala {
+    
     constructor(puntPosicio, amplada, alcada){      
         this.amplada = amplada;
         this.alcada = alcada;
@@ -13,7 +14,7 @@ class Pala {
     }
 
     update(){
-       
+        
     }
    
     draw(ctx) {
@@ -21,8 +22,8 @@ class Pala {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.posicio.x, this.posicio.y, this.amplada, this.alcada);
         ctx.restore();
-
     }
+
     mou(x,y){
         this.posicio.x += x;
         this.posicio.y += y;

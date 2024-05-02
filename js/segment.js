@@ -3,6 +3,7 @@
 */
 
 class Segment{
+
     constructor(puntA, puntB){
         this.puntA = puntA;
         this.puntB = puntB;
@@ -10,8 +11,6 @@ class Segment{
     }
 
     puntInterseccio(segment2){
-
-
         if (this.esTallen(segment2)){
             // converteix segment1 a la forma general de recta: Ax+By = C
             var a1 = this.puntB.y - this.puntA.y;
@@ -28,7 +27,6 @@ class Segment{
             var d = a1*b2 - a2*b1;
             // línies paral·leles quan d és 0
             if (d != 0) {
-
                 var x = (b2 * c1 - b1 * c2) / d;
                 var y = (a1 * c2 - a2 * c1) / d;
                 var puntInterseccio = new Punt(x, y);	// aquest punt pertany a les dues rectes
@@ -36,10 +34,9 @@ class Segment{
                 return puntInterseccio;
             }
 
-            if(d==0){
+            if (d==0) {
                 return false;
-            }
-            else{
+            } else {
                 var x = (b2 * c1 - b1 * c2) / d;
                 var y = (a1 * c2 - a2 * c1) / d;
                 var puntInterseccio = new Punt(x, y);	// aquest punt pertany a les dues rectes
@@ -47,12 +44,10 @@ class Segment{
                 && this.contePunt(segment2.puntA, segment2.puntB, puntInterseccio)){
                     return puntInterseccio;
                 }        
-
             } 
-
         }
-
     }
+
     esTallen (segment2){
         let s1p1 = this.puntA;
         let s1p2 = this.puntB;
@@ -62,19 +57,24 @@ class Segment{
         function control(punta, puntb, puntc){
             return(puntb.y-punta.y)*(puntc.x-punta.x)<(puntc.y-punta.y)*(puntb.x-punta.x);
         }
-        return (control(s1p1,s1p2,s2p1) != control(s1p1,s1p2,s2p2) &&
-                    control(s1p1,s2p1,s2p2) != control(s1p2,s2p1,s2p2));
 
+        return (
+            control(s1p1,s1p2,s2p1) != control(s1p1,s1p2,s2p2) &&
+            control(s1p1,s2p1,s2p2) != control(s1p2,s2p1,s2p2)
+        );
     }
+
     contePunt(p1,p2, punt){
         return (this.valorDinsInterval(p1.x, punt.x, p2.x) || this.valorDinsInterval(p1.y, punt.y, p2.y)); 
     }
-    	// funció interna
+    	
+    // funció interna
 	valorDinsInterval(a, b, c) {  
         // retorna cert si b està entre a i b, ambdos exclosos
         if (Math.abs(a-b) < 0.000001 || Math.abs(b-c) < 0.000001) { // no podem fer a==b amb valors reals!!
             return false;
         }
+        
         return (a < b && b < c) || (c < b && b < a);
     }
 }
