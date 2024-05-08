@@ -19,7 +19,9 @@ class Joc{
 
         this.key = {
             LEFT:{code:37, pressed:false},
-            RIGHT:{code:39, pressed:false}
+            RIGHT:{code:39, pressed:false},
+            A: {code: 65, pressed: false},      // A
+            D: {code: 68, pressed: false}       // D
         };      
     }
 
@@ -34,21 +36,50 @@ class Joc{
         this.ctx.clearRect(0,0,this.canvas.width, this.canvas.height)
     }
 
-    inicialitza(){
+    inicialitza() {
         this.pala.draw(this.ctx);
         this.bola.draw(this.ctx);
         this.totxo.draw(this.ctx);
-        $(document).on("keydown",{joc:this}, function(e){
-           //Moviment de la pala
+        
+        $(document).on("keydown", {joc: this}, function(e) {
+            var key = e.which;
+            var self = e.data.joc;
+            if (key === self.key.LEFT.code || key === self.key.A.code) {
+                self.key.LEFT.pressed = true;
+                self.key.A.pressed = true;
+            }
+            if (key === self.key.RIGHT.code || key === self.key.D.code) {
+                self.key.RIGHT.pressed = true;
+                self.key.D.pressed = true;
+            }
         });
-        $(document).on("keyup", {joc:this}, function(e){
-            //Moviment de la pala
-        });       
+
+        $(document).on("keyup", {joc: this}, function(e) {
+            var key = e.which;
+            var self = e.data.joc;
+            if (key === self.key.LEFT.code || key === self.key.A.code) {
+                self.key.LEFT.pressed = false;
+                self.key.A.pressed = false;
+            }
+            if (key === self.key.RIGHT.code || key === self.key.D.code) {
+                self.key.RIGHT.pressed = false;
+                self.key.D.pressed = false;
+            }
+        });
     }
 
-    update(){
-        this.bola.update();
-        this.pala.update();
-        this.draw();       
+    update() {
+        if (this.Key.LEFT.pressed || this.Key.A.pressed) {
+            this.posicio.x -= this.vx;
+            if (this.posicio.x < 0) {
+                this.posicio.x = 0;
+            }
+        }
+        if (this.Key.RIGHT.pressed || this.Key.D.pressed) {
+            this.posicio.x += this.vx;
+            if (this.posicio.x > this.amplada) {
+                this.posicio.x = this.amplada;
+            }
+        }
     }
 }
