@@ -26,8 +26,8 @@ class Mur {
         //this.totxoAmplada = this.canvas.width / this.columnaCount -4;
         console.log(joc.amplada);
         this.totxoAmplada = (joc.amplada-this.offsetLeft*2-2*this.columnaCount) / this.columnaCount;
-        this.totxoAlcada = joc.alcada / (this.filaCount * 2+2); // Ajusta este valor según tus necesidades
-        this.padding = (joc.amplada-(this.totxoAmplada*this.columnaCount))/this.columnaCount-1; // Ajusta este valor según tus necesidades
+        this.totxoAlcada = joc.alcada / (this.filaCount * 2+2); 
+        this.padding = (joc.amplada-(this.totxoAmplada*this.columnaCount))/this.columnaCount-1; 
         
     
         for (let c = 0; c < this.columnaCount; c++) {
