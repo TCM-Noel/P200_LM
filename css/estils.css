@@ -53,3 +53,16 @@ body {
 	height: 200px;
 	border-radius:25px;
 }
+#menu {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#principal {
+    text-align: center;
+    display: none;
+}
+
+canvas {
+    border: 1px solid black; /* Esto es opcional, solo para que el canvas sea más visible */
+}

@@ -3,16 +3,15 @@
 */
 
 $(document).ready(function() {
-    let myCanvas = document.getElementById("joc");
-    let ctx = myCanvas.getContext("2d");
+    var canvas = $('#joc')[0];
+    if (canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+        var miJuego = new Joc(canvas, ctx);
 
-    joc = new Joc(myCanvas,ctx);
-    joc.inicialitza();
-    animacio();
+        $('#startButton').click(function() {
+            $('#menu').hide(); // Oculta el menú
+            $('#principal').show(); // Muestra el canvas
+            miJuego.inicialitza(); // Inicia el juego
+        });
+    }
 });
-
-function animacio() {
-    joc.update();
-    requestAnimationFrame(animacio);    
-}
-
