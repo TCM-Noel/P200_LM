@@ -39,7 +39,7 @@ class Joc{
         this.pala.draw(this.ctx);
         this.bola.draw(this.ctx);
         this.totxo.draw(this.ctx);
-        $(document).on("keydown", {joc:this}, function(e){
+        $(document).on("keydown", {joc:this}, (e) => {
             if (e.keyCode === joc.key.LEFT.code || e.keyCode === joc.key.A.code) {
                 joc.key.LEFT.pressed = true;
                 joc.key.A.pressed = true;
@@ -48,7 +48,7 @@ class Joc{
                 joc.key.D.pressed = true;
             }
         });
-        $(document).on("keyup", {joc:this}, function(e){
+        $(document).on("keyup", {joc:this}, (e) => {
             if (e.keyCode === joc.key.LEFT.code || e.keyCode === joc.key.A.code) {
                 joc.key.LEFT.pressed = false;
                 joc.key.A.pressed = false;

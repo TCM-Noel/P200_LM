@@ -15,7 +15,7 @@ class Pala {
     update(){
         if (joc.key.LEFT.pressed || joc.key.RIGHT.pressed) {
             if (joc.key.LEFT.pressed) {
-                this.mou(-1*this.vx, this.vy)
+                this.mou(-this.vx, this.vy)
             } else {
                 this.mou(this.vx, this.vy)
             }
@@ -33,7 +33,7 @@ class Pala {
         console.log(this.posicio)
         if (this.posicio.x >= 0 /* LEFT */ && this.posicio.x <= joc.canvas.width - this.amplada /* RIGHT */) {
             this.posicio.x += x;
-            if (this.posicio.x === -1*this.vx) this.posicio.x = 0;
+            if (this.posicio.x === -this.vx) this.posicio.x = 0;
             if (this.posicio.x === joc.canvas.width - this.amplada + this.vx) this.posicio.x = joc.canvas.width - this.amplada;
         }
         this.posicio.y += y;

@@ -1,8 +1,7 @@
 class Bola {
-    
     constructor(puntPosicio, radi) {
-        this.posicio = puntPosicio;
         this.radi = radi;
+        this.posicio = puntPosicio;
         this.vx = 1;
         this.vy = -1;
         this.color = "#fff";
@@ -22,6 +21,7 @@ class Bola {
     }
 
     update(){
+
         let puntActual = this.posicio;
         let puntSeguent= new Punt(this.posicio.x + this.vx,
                             this.posicio.y + this.vy);
@@ -29,7 +29,7 @@ class Bola {
         let exces;
         let xoc = false;
         
-        //XOC LATERALM AMB EL CANVAS
+        //Xoc amb els laterals del canvas
         //Xoc lateral superior
         if(trajectoria.puntB.y - this.radi < 0){
             exces= (trajectoria.puntB.y - this.radi)/this.vy;
@@ -75,6 +75,7 @@ class Bola {
        //vora esquerra
       
        //vora dreta
+      
 
        //2n REVISAR SI EXISTEIX UN PUNT D'INTERSECCIÓ EN UN DELS 4 SEGMENTS
        //SI EXISTEIX, QUIN ÉS AQUEST PUNT
