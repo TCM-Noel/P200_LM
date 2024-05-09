@@ -5,39 +5,40 @@
 class Pala {
     
     constructor(puntPosicio, amplada, alcada){      
-        this.amplada = amplada;
-        this.alcada = alcada;
-        this.posicio = puntPosicio;
-        this.vy = 2;     
-        this.vx = 2; // velocitat = 10 píxels per fotograma
-        this.color = "#D30"; 
+        this.amplada = amplada; // amplada de la pala
+        this.alcada = alcada; // alcada de la pala
+        this.posicio = puntPosicio; // posició inicial de la pala en el canvas
+        this.vx = 2; // velocitat de la pala en l'eix x
+        this.color = "#D30"; // color de la pala
     }
-    //Moviment pala
+    
+    // Funció per actualitzar la posició de la pala
     update(){
-       if(this.Key.LEFT.pressed){
-        this.posicio.x-=this.vx
-        if(this.posicio.x<0){
-            this.posicio.x=0;
+        if(this.Key.LEFT.pressed){ // si la tecla esquerra està premuda
+            this.posicio.x -= this.vx; // mou la pala a l'esquerra
+            if(this.posicio.x < 0){ // si la pala surt del canvas, la posicionem al límit
+                this.posicio.x = 0;
+            }
+        }
+        if(this.Key.RIGHT.pressed){ // si la tecla dreta està premuda
+            this.posicio.x += this.vx; // mou la pala a la dreta
+            if(this.posicio.x > this.amplada){ // si la pala surt del canvas, la posicionem al límit
+                this.posicio.x = this.amplada;
+            }
         }
     }
-    if(this.Key.RIGHT.pressed){
-        this.posicio.x+=this.vx;
-        if(this.posicio.x>this.amplada)
-        {
-            this.posicio.x=this.amplada;
-        }
-    }
-    }
-   
+    
+    // Funció per dibuixar la pala en el context del canvas
     draw(ctx) {
-        ctx.save();
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.posicio.x, this.posicio.y, this.amplada, this.alcada);
-        ctx.restore();
+        ctx.save(); // guarda l'estat actual del context
+        ctx.fillStyle = this.color; // estableix el color de la pala
+        ctx.fillRect(this.posicio.x, this.posicio.y, this.amplada, this.alcada); // dibuixa la pala com un rectangle
+        ctx.restore(); // recupera l'estat anterior del context
     }
 
-    mou(x,y){
-        this.posicio.x += x;
-        this.posicio.y += y;
+    // Funció per moure la pala
+    mou(x, y){
+        this.posicio.x += x; // mou la pala en l'eix x
+        this.posicio.y += y; // mou la pala en l'eix y
     }
 }
