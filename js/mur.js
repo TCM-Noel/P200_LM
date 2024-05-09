@@ -1,52 +1,67 @@
+/*
+* CLASSE MUR
+*/
+
 class Mur {
-    constructor(ctx, nivell) {
-        this.ctx = ctx; // context per dibuixar
-        this.totxos = []; // llista de totxos
-        this.nivell = nivell; // nivell actual
-        this.defineixNivells(); // defineix els nivells de totxos
-        this.generaMur(); // genera el mur de totxos
+    
+    constructor(canvas, ctx) {
+        this.canvas = canvas;
+        this.ctx = ctx;
+        this.filaCount = 4; // Nombre de files de totxos
+        this.columnaCount = 10; // Nombre de columnes de totxos
+        this.totxoAmplada; // Amplada de cada totxo
+        this.totxoAlcada; // Alçada de cada totxo
+        this.padding; // Espai entre totxos
+        this.totxos = [];
+        
+        // Generem els totxos utilitzant la classe Totxo
+        this.generaMur();
     }
 
-    generaMur() {
-        let definicioNivell = this.nivells[this.nivell];
-        // crea els totxos segons la definició del nivell
-        for (let i = 0; i < definicioNivell.totxos.length; i++) {
-            for (let j = 0; j < definicioNivell.totxos[i].length; j++) {
-                if (definicioNivell.totxos[i][j] === 'a') {
-                    let x = j * (22 + 2) + 1; // calcula la posició x
-                    let y = i * (10 + 2) + 1; // calcula la posició y
-                    let totxo = new Totxo(new Punt(x, y), 22, 10);
-                    totxo.color = definicioNivell.color;
-                    this.totxos.push(totxo);
-                }
+    generaMur(){
+        this.offsetTop = 5;
+        this.offsetLeft = 6;
+        //this.totxoAmplada = this.canvas.width / this.columnaCount -4;
+        console.log(joc.amplada);
+        this.totxoAmplada = (joc.amplada-this.offsetLeft*2-2*this.columnaCount) / this.columnaCount;
+        this.totxoAlcada = joc.alcada / (this.filaCount * 2+2); // Ajusta este valor según tus necesidades
+        this.padding = (joc.amplada-(this.totxoAmplada*this.columnaCount))/this.columnaCount-1; // Ajusta este valor según tus necesidades
+    
+        for (let c = 0; c < this.columnaCount; c++) {
+            this.totxos[c] = [];
+            for (let r = 0; r < this.filaCount; r++) {
+                const totxoX = (c * (this.totxoAmplada + this.padding)) + this.offsetLeft;
+                const totxoY = (r * (this.totxoAlcada + this.padding)) + this.offsetTop;
+                const puntPosicio = { x: totxoX, y: totxoY };
+                const totxo = new Totxo(puntPosicio, this.totxoAmplada, this.totxoAlcada);
+                this.totxos[c][r] = totxo;
             }
         }
     }
 
-    draw() {
-        // dibuixa cada totxo que no ha estat tocat
-        for (let totxo of this.totxos) {
-            totxo.draw(this.ctx);
+    draw(ctx){
+        for (let c = 0; c < this.columnaCount; c++) {
+            for (let r = 0; r < this.filaCount; r++) {
+                const totxo = this.totxos[c][r];
+                totxo.draw(this.ctx);
+            }
         }
     }
-
-    defineixNivells() {
-        // defineix els nivells dels mur amb colors i disposicions diferents
-        this.nivells = [
-            // nivell 1
+     
+    defineixNivells(){
+        this.nivells=[
             {
-                color: "#4CF",
-                totxos: [
+                color: "#4CF", // blue cel
+                totxos:[
                     "aaaaaaaaaaaa",
                     "aaaaaaaaaaaa",
                     "aaaaaaaaaaaa",
                     "aaaaaaaaaaaa",
                 ]
             },
-            // nivell 2
             {
-                color: "#8D1",
-                totxos: [
+                color: "#8D1", // verd
+                totxos:[
                     "aaaaaaaaaaaa",
                     "     aa     ",
                     "   aaaaaa   ",
@@ -54,10 +69,9 @@ class Mur {
                     "     aa     ",
                 ]
             },
-            // nivell 3
             {
-                color: "#D30",
-                totxos: [
+                color: "#D30", // vermell
+                totxos:[
                     "aaaaaaaaaaaa",
                     "a          a",
                     " a        a ",
@@ -67,4 +81,5 @@ class Mur {
             }
         ];
     }
+
 };
