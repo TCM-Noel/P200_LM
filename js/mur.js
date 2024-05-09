@@ -20,7 +20,7 @@ class Mur {
 
     generaMur(){
         this.offsetTop = 5;
-        this.offsetLeft = 6;
+        this.offsetLeft = 6.5;
         //this.totxoAmplada = this.canvas.width / this.columnaCount -4;
         console.log(joc.amplada);
         this.totxoAmplada = (joc.amplada-this.offsetLeft*2-2*this.columnaCount) / this.columnaCount;
