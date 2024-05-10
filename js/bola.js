@@ -2,7 +2,7 @@ class Bola {
     constructor(puntPosicio, radi) {
         this.radi = radi;
         this.posicio = puntPosicio;
-        this.vx = 1;
+        this.vx = -1;
         this.vy = -1;
         this.color = "#fff";
     };
@@ -23,25 +23,40 @@ class Bola {
     update(){
 
         let puntActual = this.posicio;
-        let puntSeguent= new Punt(this.posicio.x + this.vx,
-                            this.posicio.y + this.vy);
-        let trajectoria= new Segment(puntActual, puntSeguent);
+        let puntSeguent= new Punt(this.posicio.x + this.vx, // Punt següent x
+                                  this.posicio.y + this.vy); // Punt següent y
+        let trajectoria= new Segment(puntActual, puntSeguent); // Segment a recòrrer
         let exces;
         let xoc = false;
         
-        //Xoc amb els laterals del canvas
-        //Xoc lateral superior
-        if(trajectoria.puntB.y - this.radi < 0){
-            exces= (trajectoria.puntB.y - this.radi)/this.vy;
+        //XOC AMB ELS LATERALS DEL CANVAS
+            
+        if(trajectoria.puntB.y - this.radi < 0){ //Xoc lateral superior
+            exces = (trajectoria.puntB.y - this.radi)/this.vy;
             this.posicio.x = trajectoria.puntB.x - exces*this.vx;
             this.posicio.y = this.radi;
             xoc = true;
             this.vy = -this.vy;
+        } 
+        
+        if ((trajectoria.puntB.x + this.radi >= joc.amplada) && (this.vx > 0)) { //Xoc lateral dret
+            exces = ((trajectoria.puntB.x + this.radi) - joc.amplada)/this.vx;
+            this.posicio.x = (joc.amplada - exces) * this.vx;
+            this.posicio.y = trajectoria.puntB.y;
+            xoc = true;
+            this.vx = -this.vx;
         }
-        //Xoc lateral dret
-        //Xoc lateral esquerra
-        //Xoc lateral inferior
-      
+
+        if ((trajectoria.puntB.x - this.radi <= 0) && (this.vx < 0)) { //Xoc lateral esquerra
+            exces = (trajectoria.puntB.x - this.radi)/this.vx;
+            this.posicio.x = (trajectoria.puntB.x + exces) * this.vx;
+            this.posicio.y = trajectoria.puntB.y;
+            xoc = true;
+            this.vx = -this.vx;
+        }
+        
+        //if () { //Xoc lateral inferior
+        
         //Xoc amb la pala
 
         //Xoc amb els totxos del mur

@@ -22,7 +22,6 @@ class Mur {
         this.offsetTop = 5;
         this.offsetLeft = 6;
         //this.totxoAmplada = this.canvas.width / this.columnaCount -4;
-        console.log(joc.amplada);
         this.totxoAmplada = (joc.amplada-this.offsetLeft*2-2*this.columnaCount) / this.columnaCount;
         this.totxoAlcada = joc.alcada / (this.filaCount * 2+2); 
         this.padding = (joc.amplada-(this.totxoAmplada*this.columnaCount))/this.columnaCount-1; 
