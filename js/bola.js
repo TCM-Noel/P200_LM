@@ -39,6 +39,7 @@ class Bola {
             this.vy = -this.vy;
         } 
         
+        // FIXME: Creo que la bola sale desde una posición incorrecta
         if ((trajectoria.puntB.x + this.radi >= joc.amplada) && (this.vx > 0)) { //Xoc lateral dret
             exces = ((trajectoria.puntB.x + this.radi) - joc.amplada)/this.vx;
             this.posicio.x = (joc.amplada - exces) * this.vx;
@@ -47,6 +48,7 @@ class Bola {
             this.vx = -this.vx;
         }
 
+        // FIXME: La bola sale desde la posición 0
         if ((trajectoria.puntB.x - this.radi <= 0) && (this.vx < 0)) { //Xoc lateral esquerra
             exces = (trajectoria.puntB.x - this.radi)/this.vx;
             this.posicio.x = (trajectoria.puntB.x + exces) * this.vx;
