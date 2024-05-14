@@ -39,20 +39,18 @@ class Bola {
             this.vy = -this.vy;
         } 
         
-        // FIXME: Creo que la bola sale desde una posición incorrecta
         if ((trajectoria.puntB.x + this.radi >= joc.amplada) && (this.vx > 0)) { //Xoc lateral dret
             exces = ((trajectoria.puntB.x + this.radi) - joc.amplada)/this.vx;
-            this.posicio.x = (joc.amplada - exces) * this.vx;
-            this.posicio.y = trajectoria.puntB.y;
+            this.posicio.x = joc.amplada - this.radi;
+            this.posicio.y = trajectoria.puntB.y - exces * this.vy;
             xoc = true;
             this.vx = -this.vx;
         }
 
-        // FIXME: La bola sale desde la posición 0
         if ((trajectoria.puntB.x - this.radi <= 0) && (this.vx < 0)) { //Xoc lateral esquerra
             exces = (trajectoria.puntB.x - this.radi)/this.vx;
-            this.posicio.x = (trajectoria.puntB.x + exces) * this.vx;
-            this.posicio.y = trajectoria.puntB.y;
+            this.posicio.x = this.radi;
+            this.posicio.y = trajectoria.puntB.y - exces * this.vy;
             xoc = true;
             this.vx = -this.vx;
         }
@@ -60,12 +58,6 @@ class Bola {
         //if () { //Xoc lateral inferior
         
         //Xoc amb la pala
-                    /*if (trajectoria.puntB.y + this.radi >= joc.pala.posicio.y && trajectoria.puntB.y + this.radi <= joc.pala.posicio.y + joc.pala.alcada &&
-                        trajectoria.puntB.x >= joc.pala.posicio.x && trajectoria.puntB.x <= joc.pala.posicio.x + joc.pala.amplada) {
-                        this.posicio.y = joc.pala.posicio.y - this.radi;
-                        this.vy = -this.vy;
-                        xoc = true;
-                    }*/
         let colisioPala = this.interseccioSegmentRectangle(trajectoria, joc.pala);
 
         if (colisioPala) {
@@ -77,8 +69,8 @@ class Bola {
                     this.vx = -this.vx;
                     break;
             }
+            xoc = true;
         }
-        
 
         //Xoc amb els totxos del mur
                     /*for (let c = 0; c < joc.mur.columnaCount; c++) {
@@ -117,23 +109,23 @@ class Bola {
         //necessitem coneixer els 4 segments del rectangle
         //vora superior
         let segmentVoraSuperior = new Segment(
-            new Punt(rectangle.posicio.x, rectangle.posicio.y - this.radi),
-            new Punt(rectangle.posicio.x + rectangle.amplada, rectangle.posicio.y - this.radi),
+            new Punt(rectangle.posicio.x - this.radi, rectangle.posicio.y - this.radi),
+            new Punt(rectangle.posicio.x + rectangle.amplada + this.radi, rectangle.posicio.y - this.radi),
         );
         //vora inferior
         let segmentVoraInterior = new Segment(
-            new Punt(rectangle.posicio.x, rectangle.posicio.y + rectangle.alcada + this.radi),
-            new Punt(rectangle.posicio.x + rectangle.amplada, rectangle.posicio.y + rectangle.alcada + this.radi)
+            new Punt(rectangle.posicio.x - this.radi, rectangle.posicio.y + rectangle.alcada + this.radi),
+            new Punt(rectangle.posicio.x + rectangle.amplada + this.radi, rectangle.posicio.y + rectangle.alcada + this.radi)
         );
         //vora esquerra
         let segmentVoraEsquerra = new Segment(
-            new Punt(rectangle.posicio.x - this.radi, rectangle.posicio.y),
-            new Punt(rectangle.posicio.x - this.radi, rectangle.posicio.y + rectangle.alcada)
+            new Punt(rectangle.posicio.x - this.radi, rectangle.posicio.y - this.radi),
+            new Punt(rectangle.posicio.x - this.radi, rectangle.posicio.y + rectangle.alcada + this.radi)
         );
         //vora dreta
         let segmentVoraDreta = new Segment(
-            new Punt(rectangle.posicio.x + rectangle.amplada + this.radi, rectangle.posicio.y),
-            new Punt(rectangle.posicio.x + rectangle.amplada + this.radi, rectangle.posicio.y + rectangle.alcada)
+            new Punt(rectangle.posicio.x + rectangle.amplada + this.radi, rectangle.posicio.y - this.radi),
+            new Punt(rectangle.posicio.x + rectangle.amplada + this.radi, rectangle.posicio.y + rectangle.alcada + this.radi)
         );
 
         //2n REVISAR SI EXISTEIX UN PUNT D'INTERSECCIÓ EN UN DELS 4 SEGMENTS
@@ -149,7 +141,7 @@ class Bola {
                 distanciaIMin = distanciaI;
                 puntIMin = puntI;
                 voraI = "superior";
-                return {pI: puntIMin, vora: voraI};
+                /* return {pI: puntIMin, vora: voraI}; */
             }
         }
         //vora inferior
@@ -161,7 +153,7 @@ class Bola {
                 distanciaIMin = distanciaI;
                 puntIMin = puntI;
                 voraI = "inferior";
-                return {pI: puntIMin, vora: voraI};
+                /* return {pI: puntIMin, vora: voraI}; */
             }
         }
         //vora esquerra
@@ -173,7 +165,7 @@ class Bola {
                 distanciaIMin = distanciaI;
                 puntIMin = puntI;
                 voraI = "esquerra";
-                return {pI: puntIMin, vora: voraI};
+                /* return {pI: puntIMin, vora: voraI}; */
             }
         }
         //vora dreta
@@ -185,14 +177,14 @@ class Bola {
                 distanciaIMin = distanciaI;
                 puntIMin = puntI;
                 voraI = "dreta";
-                return {pI: puntIMin, vora: voraI};
+                /* return {pI: puntIMin, vora: voraI};  */
             }
         }
 
         //Retorna la vora on s'ha produït la col·lisió, i el punt (x,y)
-        //if(voraI){
-            //return {pI: puntIMin, vora: voraI};
-        //}
+        if(voraI){
+            return {pI: puntIMin, vora: voraI};
+        }
     }
 
     distancia = function(p1,p2){
