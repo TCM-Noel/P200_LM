@@ -30,7 +30,6 @@ class Pala {
     }
 
     mou(x,y){
-        console.log(this.posicio)
         if (this.posicio.x >= 0 /* LEFT */ && this.posicio.x <= joc.canvas.width - this.amplada /* RIGHT */) {
             this.posicio.x += x;
             if (this.posicio.x === -this.vx) this.posicio.x = 0;
