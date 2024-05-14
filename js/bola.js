@@ -66,17 +66,19 @@ class Bola {
                         this.vy = -this.vy;
                         xoc = true;
                     }*/
-        let colisioPala = this.interseccioSegmentRectangle(trajectoria, joc.pala) !== undefined ? 
-            this.interseccioSegmentRectangle(trajectoria, joc.pala) : "";
+        let colisioPala = this.interseccioSegmentRectangle(trajectoria, joc.pala);
 
-        switch (colisioPala.vora) {
-            case "superior" || "inferior":
-                this.vy = -this.vy;
-                break;
-            case "esquerra" || "dreta":
-                this.vx = -this.vx;
-                break;
+        if (colisioPala) {
+            switch (colisioPala.vora) {
+                case "superior" || "inferior":
+                    this.vy = -this.vy;
+                    break;
+                case "esquerra" || "dreta":
+                    this.vx = -this.vx;
+                    break;
+            }
         }
+        
 
         //Xoc amb els totxos del mur
                     /*for (let c = 0; c < joc.mur.columnaCount; c++) {
@@ -115,23 +117,23 @@ class Bola {
         //necessitem coneixer els 4 segments del rectangle
         //vora superior
         let segmentVoraSuperior = new Segment(
-            rectangle.posicio,
-            new Punt(rectangle.posicio.x + rectangle.amplada, rectangle.posicio.y)
+            new Punt(rectangle.posicio.x, rectangle.posicio.y - this.radi),
+            new Punt(rectangle.posicio.x + rectangle.amplada, rectangle.posicio.y - this.radi),
         );
         //vora inferior
         let segmentVoraInterior = new Segment(
-            new Punt(rectangle.posicio.x, rectangle.posicio.y + rectangle.alcada),
-            new Punt(rectangle.posicio.x + rectangle.amplada, rectangle.posicio.y + rectangle.alcada)
+            new Punt(rectangle.posicio.x, rectangle.posicio.y + rectangle.alcada + this.radi),
+            new Punt(rectangle.posicio.x + rectangle.amplada, rectangle.posicio.y + rectangle.alcada + this.radi)
         );
         //vora esquerra
         let segmentVoraEsquerra = new Segment(
-            rectangle.posicio,
-            new Punt(rectangle.posicio.x, rectangle.posicio.y + rectangle.alcada)
+            new Punt(rectangle.posicio.x - this.radi, rectangle.posicio.y),
+            new Punt(rectangle.posicio.x - this.radi, rectangle.posicio.y + rectangle.alcada)
         );
         //vora dreta
         let segmentVoraDreta = new Segment(
-            new Punt(rectangle.posicio.x + rectangle.amplada, rectangle.posicio.y),
-            new Punt(rectangle.posicio.x + rectangle.amplada, rectangle.posicio.y + rectangle.alcada)
+            new Punt(rectangle.posicio.x + rectangle.amplada + this.radi, rectangle.posicio.y),
+            new Punt(rectangle.posicio.x + rectangle.amplada + this.radi, rectangle.posicio.y + rectangle.alcada)
         );
 
         //2n REVISAR SI EXISTEIX UN PUNT D'INTERSECCIÓ EN UN DELS 4 SEGMENTS
