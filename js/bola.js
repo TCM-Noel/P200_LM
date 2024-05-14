@@ -20,7 +20,7 @@ class Bola {
         this.posicio.y += y;
     }
 
-    update(){
+    update(pala, mur){
 
         let puntActual = this.posicio;
         let puntSeguent= new Punt(this.posicio.x + this.vx, // Punt següent x
@@ -60,8 +60,23 @@ class Bola {
         //if () { //Xoc lateral inferior
         
         //Xoc amb la pala
-
+        if (trajectoria.puntB.y + this.radi >= pala.posicio.y && trajectoria.puntB.y + this.radi <= pala.posicio.y + pala.alcada &&
+            trajectoria.puntB.x >= pala.posicio.x && trajectoria.puntB.x <= pala.posicio.x + pala.amplada) {
+            this.posicio.y = pala.posicio.y - this.radi;
+            this.vy = -this.vy;
+            xoc = true;
+        }
         //Xoc amb els totxos del mur
+        for (let c = 0; c < mur.columnaCount; c++) {
+            for (let r = 0; r < mur.filaCount; r++) {
+                const totxo = mur.totxos[c][r];
+                if (!totxo.tocat && this.detectaXoc(totxo)) {
+                    totxo.tocat = true;
+                    this.vy = -this.vy; // Cambia la dirección de la bola
+                    xoc = true;
+                }
+            }
+        }
         //Utilitzem el mètode INTERSECCIOSEGMENTRECTANGLE
 
         if (!xoc){
@@ -70,7 +85,7 @@ class Bola {
         }     
         
     }
-
+    
     interseccioSegmentRectangle(segment, rectangle){
 
        //1r REVISAR SI EXISTEIX UN PUNT D'INTERSECCIÓ EN UN DELS 4 SEGMENTS
@@ -124,5 +139,24 @@ class Bola {
     distancia = function(p1,p2){
         return Math.sqrt((p2.x-p1.x)*(p2.x-p1.x)+(p2.y-p1.y)*(p2.y-p1.y));
     }
+    detectaXoc(totxo) {
+        // Detectar si la bola colisiona con el totxo
+        let xDist = Math.abs(this.posicio.x - totxo.posicio.x - totxo.amplada / 2);
+        let yDist = Math.abs(this.posicio.y - totxo.posicio.y - totxo.alcada / 2);
+
+        if (xDist > (totxo.amplada / 2 + this.radi) || yDist > (totxo.alcada / 2 + this.radi)) {
+            return false;
+        }
+
+        if (xDist <= (totxo.amplada / 2) || yDist <= (totxo.alcada / 2)) {
+            return true;
+        }
+
+        let cornerDistanceSq = Math.pow((xDist - totxo.amplada / 2), 2) +
+                               Math.pow((yDist - totxo.alcada / 2), 2);
+
+        return (cornerDistanceSq <= Math.pow(this.radi, 2));
+    }
 }
+
 

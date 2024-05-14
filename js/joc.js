@@ -59,7 +59,7 @@ class Joc{
     }
 
     update(){
-        this.bola.update();
+        this.bola.update(this.pala, this.mur);
         this.pala.update();
         this.draw();
     }
