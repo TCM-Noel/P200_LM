@@ -81,17 +81,28 @@ class Bola {
         }
 
         //Xoc amb els totxos del mur
-                    /*for (let c = 0; c < joc.mur.columnaCount; c++) {
-                        for (let r = 0; r < joc.mur.filaCount; r++) {
-                            const totxo = joc.mur.totxos[c][r];
-                            if (!totxo.tocat && this.detectaXoc(totxo)) {
-                                totxo.tocat = true;
-                                this.vy = -this.vy; // Cambia la dirección de la bola
-                                xoc = true;
-                            }
+        for (let c = 0; c < joc.mur.columnaCount; c++) {
+            for (let r = 0; r < joc.mur.filaCount; r++) {
+                const totxo = joc.mur.totxos[c][r];
+                if (!totxo.tocat) {
+                    let colisioTotxo = this.interseccioSegmentRectangle(trajectoria, totxo);
+                    if (colisioTotxo) {
+                        switch (colisioTotxo.vora) {
+                            case "superior":
+                            case "inferior":
+                                this.vy = -this.vy;
+                                break;
+                            case "esquerra":
+                            case "dreta":
+                                this.vx = -this.vx;
+                                break;
                         }
-                    }*/
-        
+                        totxo.tocat = true;
+                        xoc = true;
+                    }
+                }
+            }
+        }
 
         //Utilitzem el mètode INTERSECCIOSEGMENTRECTANGLE
 
