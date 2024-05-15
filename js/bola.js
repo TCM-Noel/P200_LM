@@ -124,7 +124,7 @@ class Bola {
             new Punt(rectangle.posicio.x + rectangle.amplada + this.radi, rectangle.posicio.y - this.radi)
         );
         //vora inferior
-        let segmentVoraInterior = new Segment(
+        let segmentVoraInferior = new Segment(
             new Punt(rectangle.posicio.x - this.radi, rectangle.posicio.y + rectangle.alcada + this.radi),
             new Punt(rectangle.posicio.x + rectangle.amplada + this.radi, rectangle.posicio.y + rectangle.alcada + this.radi)
         );
