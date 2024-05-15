@@ -2,8 +2,8 @@ class Bola {
     constructor(puntPosicio, radi) {
         this.radi = radi;
         this.posicio = puntPosicio;
-        this.vx = -0.7;
-        this.vy = -0.7;
+        this.vx = -1;
+        this.vy = -1;
         this.color = "#fff";
     };
 
@@ -31,7 +31,7 @@ class Bola {
         
         //XOC AMB ELS LATERALS DEL CANVAS
             
-        if(trajectoria.puntB.y - this.radi < 0){ //Xoc lateral superior
+        if(trajectoria.puntB.y - this.radi <= 0){ //Xoc lateral superior
             exces = (trajectoria.puntB.y - this.radi)/this.vy;
             this.posicio.x = trajectoria.puntB.x - exces*this.vx;
             this.posicio.y = this.radi;
@@ -39,7 +39,7 @@ class Bola {
             this.vy = -this.vy;
         } 
         
-        if ((trajectoria.puntB.x + this.radi >= joc.amplada) && (this.vx > 0)) { //Xoc lateral dret
+        if (trajectoria.puntB.x + this.radi >= joc.amplada) { //Xoc lateral dret
             exces = ((trajectoria.puntB.x + this.radi) - joc.amplada)/this.vx;
             this.posicio.x = joc.amplada - this.radi;
             this.posicio.y = trajectoria.puntB.y - exces * this.vy;
@@ -47,7 +47,7 @@ class Bola {
             this.vx = -this.vx;
         }
 
-        if ((trajectoria.puntB.x - this.radi <= 0) && (this.vx < 0)) { //Xoc lateral esquerra
+        if (trajectoria.puntB.x - this.radi <= 0) { //Xoc lateral esquerra
             exces = (trajectoria.puntB.x - this.radi)/this.vx;
             this.posicio.x = this.radi;
             this.posicio.y = trajectoria.puntB.y - exces * this.vy;
@@ -55,17 +55,25 @@ class Bola {
             this.vx = -this.vx;
         }
         
-        //if () { //Xoc lateral inferior
+        if (trajectoria.puntB.y + this.radi >= joc.alcada) { //Xoc lateral inferior
+            exces = (trajectoria.puntB.y + this.radi)-joc.alcada/this.vy;
+            this.posicio.x = trajectoria.puntB.x - exces*this.vx;
+            this.posicio.y = joc.alcada - exces - this.radi;
+            xoc = true;
+            this.vy = -this.vy;
+        }
         
         //Xoc amb la pala
         let colisioPala = this.interseccioSegmentRectangle(trajectoria, joc.pala);
 
         if (colisioPala) {
             switch (colisioPala.vora) {
-                case "superior" || "inferior":
+                case "superior":
+                case "inferior":
                     this.vy = -this.vy;
                     break;
-                case "esquerra" || "dreta":
+                case "esquerra":
+                case "dreta":
                     this.vx = -this.vx;
                     break;
             }
@@ -113,7 +121,7 @@ class Bola {
             new Punt(rectangle.posicio.x + rectangle.amplada + this.radi, rectangle.posicio.y - this.radi),
         );
         //vora inferior
-        let segmentVoraInterior = new Segment(
+        let segmentVoraInferior = new Segment(
             new Punt(rectangle.posicio.x - this.radi, rectangle.posicio.y + rectangle.alcada + this.radi),
             new Punt(rectangle.posicio.x + rectangle.amplada + this.radi, rectangle.posicio.y + rectangle.alcada + this.radi)
         );
@@ -145,7 +153,7 @@ class Bola {
             }
         }
         //vora inferior
-        puntI = segment.puntInterseccio(segmentVoraInterior);
+        puntI = segment.puntInterseccio(segmentVoraInferior);
         if (puntI){
             //distancia entre dos punts, el punt inicial del segment i el punt d'intersecció
             distanciaI = Punt.distanciaDosPunts(segment.puntA,puntI);
