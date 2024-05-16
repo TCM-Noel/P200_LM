@@ -73,19 +73,16 @@ class Joc{
         }
     }
 }
-//TODO:
+
 function perdut(){
-    tornarAlMenu();
     alert('Perdiste mi wacho, no te quedan vidas');
+    tornarAlMenu();
 }
 function guanyat(){
     alert('Ganaste mi wacho, te quedan ', this.vides, 'vides');
     tornarAlMenu();
 }
 
-
-
-
 function tornarAlMenu(){
-    location.href="index.html";
+    location.href="../index.html";
 }

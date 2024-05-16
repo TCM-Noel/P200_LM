@@ -56,22 +56,14 @@ class Bola {
             xoc = true;
             this.vx = -this.vx;
         }
+
         //FIXME:
         //Xoc lateral inferior
-        if ((trajectoria.puntB.y - this.radi >= joc.alcada) && (this.vy>0)) {
-            const bola = this;
-            //setTimeout(function() {
-                joc.vides--;
-                console.log(joc.amplada / 2);
-                console.log(joc.alcada - joc.alcada / 4 );
-                bola.posicio.x = joc.amplada / 2;
-                bola.posicio.y = joc.alcada - joc.alcada / 4;
-                //bola.vx = 0;
-                //bola.vy = 0;
-            //}, 1000);
+        if (trajectoria.puntB.y - this.radi >= joc.alcada) {
+            joc.vides--;
+            this.posicio.x = joc.amplada / 2;
+            this.posicio.y = joc.alcada - joc.alcada / 4;
             xoc=true;
-            this.vx = -1;
-            this.vy = -1;
         }
         
         //Xoc amb la pala

@@ -49,34 +49,34 @@ class Mur {
     }
      
     defineixNivells(){
-        this.nivells=[
+        return this.nivells=[
             {
                 color: "#4CF", // blue cel
                 totxos:[
-                    "aaaaaaaaaaaa",
-                    "aaaaaaaaaaaa",
-                    "aaaaaaaaaaaa",
-                    "aaaaaaaaaaaa",
+                    "aaaaaaaaaa",
+                    "aaaaaaaaaa",
+                    "aaaaaaaaaa",
+                    "aaaaaaaaaa",
                 ]
             },
             {
                 color: "#8D1", // verd
                 totxos:[
-                    "aaaaaaaaaaaa",
-                    "     aa     ",
-                    "   aaaaaa   ",
-                    "   aaaaaa   ",
-                    "     aa     ",
+                    "aaaaaaaaaa",
+                    "    aa    ",
+                    "  aaaaaa  ",
+                    "  aaaaaa  ",
+                    "    aa    ",
                 ]
             },
             {
                 color: "#D30", // vermell
                 totxos:[
-                    "aaaaaaaaaaaa",
-                    "a          a",
-                    " a        a ",
-                    "aa        aa",
-                    "  aaaaaaaa  ",
+                    "aaaaaaaaaa",
+                    "a        a",
+                    " a      a ",
+                    "aa      aa",
+                    "  aaaaaa  ",
                 ]
             }
         ];
