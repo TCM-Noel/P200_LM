@@ -10,6 +10,7 @@ class Joc{
         this.alcada = canvas.height;
         this.vides = 3;
         this.isGuanyat = false;
+        this.isCaigut = false;
        
         this.bola = new Bola(new Punt(this.canvas.width/2,this.canvas.height-this.canvas.height/4),3);
         this.pala = new Pala(new Punt((this.canvas.width-60)/2,this.canvas.height-15),60,4);
@@ -63,15 +64,17 @@ class Joc{
     update(){
         if (this.vides==0) {
             $('#missatgeModal').text('Has perdut!')
-            $('#hasPerdut').fadeIn(200);
+            $('#modal').fadeIn(200);
         } else if (this.isGuanyat) {
             $('#missatgeModal').text('Has guanyat!')
-            $('#hasPerdut').fadeIn(200);
-        } else {
+            $('#modal').fadeIn(200);
+        } else if (!this.isCaigut) {
             this.bola.update();
             this.pala.update();
             this.draw();
             this.guanyat();
+        } else {
+            setTimeout(() => this.isCaigut = false, 3000)
         }
     }
 
@@ -84,5 +87,19 @@ class Joc{
             }
         }
         this.isGuanyat = true;
+    }
+
+    cuentaAtras() {
+        $('#cuentaAtras').fadeIn(100);
+        $('#cuentaAtras').text('3');
+        let tiempo = 3;
+        const intervalo = setInterval(() => {
+            tiempo--;
+            $('#cuentaAtras').text(tiempo);
+            if (tiempo === 0) {
+                clearInterval(intervalo);
+                $('#cuentaAtras').hide();
+            }
+        }, 1000);
     }
 }
