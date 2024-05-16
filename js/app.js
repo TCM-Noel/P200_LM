@@ -40,3 +40,7 @@ function animacio() {
     joc.update();
     requestAnimationFrame(animacio);    
 }
+
+function tornarAlMenu(){
+    location.href="index.html";
+}

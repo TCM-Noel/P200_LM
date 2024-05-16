@@ -9,6 +9,7 @@ class Joc{
         this.amplada = canvas.width;
         this.alcada = canvas.height;
         this.vides = 3;
+        this.isPause = false;
        
         this.bola = new Bola(new Punt(this.canvas.width/2,this.canvas.height-this.canvas.height/4),3);
         this.pala = new Pala(new Punt((this.canvas.width-60)/2,this.canvas.height-15),60,4);
@@ -34,8 +35,6 @@ class Joc{
     }
 
     inicialitza(){
-        console.log(this.canvas.width/2);
-        console.log(this.canvas.height-this.canvas.height/4);
         this.pala.draw(this.ctx);
         this.bola.draw(this.ctx);
         this.mur.generaMur();
@@ -61,28 +60,16 @@ class Joc{
         });
     }
 
-
     update(){
-        this.bola.update();
-        this.pala.update();
-        this.draw();
+        if(this.vides==0) {
+            $('#hasPerdut').fadeIn(200);
+            this.isPause = true;
+        } 
 
-        if(this.vides==0){
-            perdut();
-            
+        if (!this.isPause) {
+            this.bola.update();
+            this.pala.update();
+            this.draw();
         }
     }
-}
-
-function perdut(){
-    alert('Perdiste mi wacho, no te quedan vidas');
-    tornarAlMenu();
-}
-function guanyat(){
-    alert('Ganaste mi wacho, te quedan ', this.vides, 'vides');
-    tornarAlMenu();
-}
-
-function tornarAlMenu(){
-    location.href="../index.html";
 }

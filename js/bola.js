@@ -6,8 +6,8 @@ class Bola {
     constructor(puntPosicio, radi) {
         this.radi = radi;
         this.posicio = puntPosicio;
-        this.vx = -1;
-        this.vy = -1;
+        this.vx = -0.8;
+        this.vy = -0.8;
         this.color = "#fff";
     }
 
@@ -57,13 +57,14 @@ class Bola {
             this.vx = -this.vx;
         }
 
-        //FIXME:
+        //FIXME: Peta al ir al menú
         //Xoc lateral inferior
         if (trajectoria.puntB.y - this.radi >= joc.alcada) {
             joc.vides--;
             this.posicio.x = joc.amplada / 2;
             this.posicio.y = joc.alcada - joc.alcada / 4;
             xoc=true;
+            this.vy = -this.vy
         }
         
         //Xoc amb la pala
@@ -190,15 +191,3 @@ class Bola {
         return Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));
     }
 }
-
-/*
-    TODO:Metodo que le reste una vida si toca el borde inferior del canvas
-
-    segmento zona de abajo--> (0, canvas.height)   to   (canvas.width, canvas.height)
-
-    si toca el segmento joc.vides--;
-
-    si toca el segmento mou(joc.canvas.width/2,joc.canvas.height-joc.canvas.height/4)
-
-    si toca el segmento restablecer velocidad:         this.vx = -0.5; this.vy = -0.5;
-    */
