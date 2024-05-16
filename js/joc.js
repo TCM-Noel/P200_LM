@@ -71,5 +71,17 @@ class Joc{
             this.pala.update();
             this.draw();
         }
+        this.guanyat();
+    }
+    guanyat() {
+        for (let c = 0; c < this.mur.columnaCount; c++) {
+            for (let r = 0; r < this.mur.filaCount; r++) {
+                if (this.mur.totxos[c][r].tocat == false) {
+                    return;
+                }
+            }
+        }
+        alert('Ganaste mi wacho, te quedan ' + this.vides + ' vides');
+        tornarAlMenu();
     }
 }
