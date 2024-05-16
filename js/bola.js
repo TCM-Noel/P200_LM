@@ -56,13 +56,22 @@ class Bola {
             xoc = true;
             this.vx = -this.vx;
         }
-        
-        if (trajectoria.puntB.y + this.radi >= joc.alcada) { //Xoc lateral inferior
-            exces = (trajectoria.puntB.y + this.radi)-joc.alcada/this.vy;
-            this.posicio.x = trajectoria.puntB.x - exces*this.vx;
-            this.posicio.y = joc.alcada - exces - this.radi;
-            xoc = true;
-            this.vy = -this.vy;
+        //FIXME:
+        //Xoc lateral inferior
+        if ((trajectoria.puntB.y - this.radi >= joc.alcada) && (this.vy>0)) {
+            const bola = this;
+            //setTimeout(function() {
+                joc.vides--;
+                console.log(joc.amplada / 2);
+                console.log(joc.alcada - joc.alcada / 4 );
+                bola.posicio.x = joc.amplada / 2;
+                bola.posicio.y = joc.alcada - joc.alcada / 4;
+                //bola.vx = 0;
+                //bola.vy = 0;
+            //}, 1000);
+            xoc=true;
+            this.vx = -1;
+            this.vy = -1;
         }
         
         //Xoc amb la pala
@@ -189,3 +198,15 @@ class Bola {
         return Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));
     }
 }
+
+/*
+    TODO:Metodo que le reste una vida si toca el borde inferior del canvas
+
+    segmento zona de abajo--> (0, canvas.height)   to   (canvas.width, canvas.height)
+
+    si toca el segmento joc.vides--;
+
+    si toca el segmento mou(joc.canvas.width/2,joc.canvas.height-joc.canvas.height/4)
+
+    si toca el segmento restablecer velocidad:         this.vx = -0.5; this.vy = -0.5;
+    */
