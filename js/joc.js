@@ -61,7 +61,11 @@ class Joc{
 
     update(){
         if (this.vides==0) {
-            $('#hasPerdut').fadeIn(200);
+            $('#missatgeModal').text('Has perdut!')
+            $('#modal').fadeIn(200);
+        } else if (this.isGuanyat) {
+            $('#missatgeModal').text('Has guanyat!')
+            $('#modal').fadeIn(200);
         } else {
             this.bola.update();
             this.pala.update();
