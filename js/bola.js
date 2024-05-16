@@ -39,7 +39,6 @@ class Bola {
             this.vy = -this.vy;
         } 
         
-        // FIXME: Creo que la bola sale desde una posición incorrecta
         if ((trajectoria.puntB.x + this.radi >= joc.amplada) && (this.vx > 0)) { //Xoc lateral dret
             exces = ((trajectoria.puntB.x + this.radi) - joc.amplada)/this.vx;
             this.posicio.x = (joc.amplada - exces) * this.vx;
@@ -48,7 +47,6 @@ class Bola {
             this.vx = -this.vx;
         }
 
-        // FIXME: La bola sale desde la posición 0
         if ((trajectoria.puntB.x - this.radi <= 0) && (this.vx < 0)) { //Xoc lateral esquerra
             exces = (trajectoria.puntB.x - this.radi)/this.vx;
             this.posicio.x = (trajectoria.puntB.x + exces) * this.vx;
@@ -56,8 +54,23 @@ class Bola {
             xoc = true;
             this.vx = -this.vx;
         }
-        
-        //if () { //Xoc lateral inferior
+        //FIXME:
+        //Xoc lateral inferior
+        if ((trajectoria.puntB.y - this.radi >= joc.alcada) && (this.vy>0)) {
+            const bola = this;
+            //setTimeout(function() {
+                joc.vides--;
+                console.log(joc.amplada / 2);
+                console.log(joc.alcada - joc.alcada / 4 );
+                bola.posicio.x = joc.amplada / 2;
+                bola.posicio.y = joc.alcada - joc.alcada / 4;
+                //bola.vx = 0;
+                //bola.vy = 0;
+            //}, 1000);
+            xoc=true;
+            this.vx = -1;
+            this.vy = -1;
+        }
         
         //Xoc amb la pala
         if (trajectoria.puntB.y + this.radi >= pala.posicio.y && trajectoria.puntB.y + this.radi <= pala.posicio.y + pala.alcada &&
@@ -86,6 +99,7 @@ class Bola {
         
     }
     
+
     interseccioSegmentRectangle(segment, rectangle){
 
        //1r REVISAR SI EXISTEIX UN PUNT D'INTERSECCIÓ EN UN DELS 4 SEGMENTS
@@ -157,6 +171,21 @@ class Bola {
 
         return (cornerDistanceSq <= Math.pow(this.radi, 2));
     }
+    
+    
+    
+    /*
+
+    TODO:Metodo que le reste una vida si toca el borde inferior del canvas
+
+    segmento zona de abajo--> (0, canvas.height)   to   (canvas.width, canvas.height)
+
+    si toca el segmento joc.vides--;
+
+    si toca el segmento mou(joc.canvas.width/2,joc.canvas.height-joc.canvas.height/4)
+
+    si toca el segmento restablecer velocidad:         this.vx = -0.5; this.vy = -0.5;
+    */
 }
 
 
