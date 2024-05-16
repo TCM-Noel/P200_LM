@@ -41,6 +41,6 @@ function animacio() {
     requestAnimationFrame(animacio);    
 }
 
-function tornarAlMenu(){ //
+function tornarAlMenu(){ 
     location.href="index.html";
 }

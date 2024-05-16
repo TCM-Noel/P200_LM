@@ -9,6 +9,7 @@ class Joc{
         this.amplada = canvas.width;
         this.alcada = canvas.height;
         this.vides = 3;
+        this.isGuanyat = false;
        
         this.bola = new Bola(new Punt(this.canvas.width/2,this.canvas.height-this.canvas.height/4),3);
         this.pala = new Pala(new Punt((this.canvas.width-60)/2,this.canvas.height-15),60,4);
@@ -61,14 +62,19 @@ class Joc{
 
     update(){
         if (this.vides==0) {
+            $('#missatgeModal').text('Has perdut!')
+            $('#hasPerdut').fadeIn(200);
+        } else if (this.isGuanyat) {
+            $('#missatgeModal').text('Has guanyat!')
             $('#hasPerdut').fadeIn(200);
         } else {
             this.bola.update();
             this.pala.update();
             this.draw();
+            this.guanyat();
         }
-        this.guanyat();
     }
+
     guanyat() {
         for (let c = 0; c < this.mur.columnaCount; c++) {
             for (let r = 0; r < this.mur.filaCount; r++) {
@@ -77,7 +83,6 @@ class Joc{
                 }
             }
         }
-        alert('Ganaste mi wacho, te quedan ' + this.vides + ' vides');
-        tornarAlMenu();
+        this.isGuanyat = true;
     }
 }
