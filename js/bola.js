@@ -57,14 +57,17 @@ class Bola {
             this.vx = -this.vx;
         }
 
-        //FIXME: Peta al ir al menú
         //Xoc lateral inferior
         if (trajectoria.puntB.y - this.radi >= joc.alcada) {
             joc.vides--;
             this.posicio.x = joc.amplada / 2;
             this.posicio.y = joc.alcada - joc.alcada / 4;
             xoc=true;
-            this.vy = -this.vy
+            this.vy = -this.vy;
+            if (joc.vides !== 0) {
+                joc.isCaigut = true;
+                joc.cuentaAtras();
+            }
         }
         
         //Xoc amb la pala
