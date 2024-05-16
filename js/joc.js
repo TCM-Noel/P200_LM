@@ -73,15 +73,16 @@ class Joc{
             this.pala.update();
             this.draw();
             this.guanyat();
+            this.actualizarVidas();
         } else {
             setTimeout(() => this.isCaigut = false, 3000)
         }
-        this.actualizarVidas();
     }
+    
     actualizarVidas() {
         // Oculta los corazones según la cantidad de vidas restantes
-        for (var i = 1; i <= 3; i++) {
-            var corazón = $("#life" + i);
+        for (let i = 1; i <= 3; i++) {
+            let corazón = $("#life" + i);
             if (i <= this.vides) {
                 corazón.show();
             } else {
@@ -89,6 +90,7 @@ class Joc{
             }
         }
     }
+    
     guanyat() {
         for (let c = 0; c < this.mur.columnaCount; c++) {
             for (let r = 0; r < this.mur.filaCount; r++) {
