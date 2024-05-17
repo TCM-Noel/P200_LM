@@ -90,7 +90,7 @@ class Bola {
         for (let c = 0; c < joc.mur.columnaCount; c++) {
             for (let r = 0; r < joc.mur.filaCount; r++) {
                 const totxo = joc.mur.totxos[c][r];
-                if (!totxo.tocat) {
+                if (totxo && !totxo.tocat) {
                     let colisioTotxo = this.interseccioSegmentRectangle(trajectoria, totxo);
                     if (colisioTotxo) {
                         switch (colisioTotxo.vora) {
@@ -106,10 +106,10 @@ class Bola {
                         totxo.tocat = true;
                         xoc = true;
                     }
-                }
+                } 
             }
         }
-
+        
         if (!xoc) {
             this.posicio.x = trajectoria.puntB.x;
             this.posicio.y = trajectoria.puntB.y;

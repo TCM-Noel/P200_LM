@@ -7,7 +7,7 @@ class Mur {
     constructor(canvas, ctx) {
         this.canvas = canvas;
         this.ctx = ctx;
-        this.filaCount = 4; // Nombre de files de totxos
+        this.filaCount = 5; // Nombre de files de totxos
         this.columnaCount = 10; // Nombre de columnes de totxos
         this.totxoAmplada; // Amplada de cada totxo
         this.totxoAlcada; // Alçada de cada totxo
@@ -61,6 +61,7 @@ class Mur {
                     "aaaaaaaaaa",
                     "aaaaaaaaaa",
                     "aaaaaaaaaa",
+                    "aaaaaaaaaa"
                 ]
             },
             'modalidad2': {
