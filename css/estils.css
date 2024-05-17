@@ -136,3 +136,9 @@ canvas {
     color: black;
     font-size: 48px;
 }
+
+.vidas {
+    height: 50px;
+    width: 50px;
+    margin-top: 25px;
+}
