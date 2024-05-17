@@ -2,8 +2,8 @@
 * CLASSE JOC
 */
 
-class Joc{
-    constructor(canvas,ctx) {
+class Joc {
+    constructor(canvas, ctx) {
         this.canvas = canvas;
         this.ctx = ctx;
         this.amplada = canvas.width;
@@ -35,10 +35,10 @@ class Joc{
         this.ctx.clearRect(0,0,this.canvas.width, this.canvas.height)
     }
 
-    inicialitza(){
+    inicialitza(modalidad){
         this.pala.draw(this.ctx);
         this.bola.draw(this.ctx);
-        this.mur.generaMur();
+        this.mur.generaMur(modalidad);
         this.mur.draw();
         
         $(document).on("keydown", {joc:this}, (e) => {
@@ -94,7 +94,7 @@ class Joc{
     guanyat() {
         for (let c = 0; c < this.mur.columnaCount; c++) {
             for (let r = 0; r < this.mur.filaCount; r++) {
-                if (this.mur.totxos[c][r].tocat == false) {
+                if (this.mur.totxos[c][r] && this.mur.totxos[c][r].tocat == false) {
                     return;
                 }
             }
