@@ -6,8 +6,8 @@ class Bola {
     constructor(puntPosicio, radi) {
         this.radi = radi;
         this.posicio = puntPosicio;
-        this.vx = -0.8;
-        this.vy = -0.8;
+        this.vx = -1,3;
+        this.vy = -1,3;
         this.color = "#fff";
     }
 
@@ -65,6 +65,7 @@ class Bola {
             xoc=true;
             this.vy = -this.vy;
             if (joc.vides !== 0) {
+                joc.pala.posicio = new Punt((joc.canvas.width-60)/2,joc.canvas.height-15);
                 joc.isCaigut = true;
                 joc.cuentaAtras();
             }
