@@ -19,6 +19,7 @@ $(document).ready(function() {
     $('#startButton').click(function() {
         $('#startButton').hide(); // Oculta el botón de inicio
         $('#modalidades').show(); // Muestra las modalidades
+        startMusic.play(); // Reproduce la música de inicio
     });
 
     // Eventos para los botones de modalidad
@@ -36,8 +37,11 @@ $(document).ready(function() {
 
     function iniciarJuego(modalidad) {
         console.log(modalidad + " seleccionada");
-        $('#menu').hide(); // Oculta el menú
-        $('#principal').show(); // Muestra el canvas
+        startMusic.pause(); 
+        startMusic.currentTime = 0;
+        modeMusic.play(); 
+        $('#menu').hide(); 
+        $('#principal').show(); 
         joc.inicialitza(modalidad); // Inicializa el juego con la modalidad seleccionada
         animacio();
     }

@@ -11,6 +11,7 @@ class Joc {
         this.vides = 3;
         this.isGuanyat = false;
         this.isCaigut = false;
+        this.comptadorEnrere = false; 
        
         this.bola = new Bola(new Punt(this.canvas.width/2,this.canvas.height-this.canvas.height/4),3);
         this.pala = new Pala(new Punt((this.canvas.width-60)/2,this.canvas.height-15),60,4);
@@ -68,15 +69,21 @@ class Joc {
         } else if (this.isGuanyat) {
             $('#missatgeModal').text('Has guanyat!')
             $('#modal').fadeIn(200);
+            this.playWinMusic();
         } else if (!this.isCaigut) {
             this.bola.update();
             this.pala.update();
             this.draw();
             this.guanyat();
             this.actualizarVidas();
-        } else {
-            setTimeout(() => this.isCaigut = false, 3000)
+        } else if (!this.comptadorEnrere) {
+            this.comptadorEnrere = true;
+            setTimeout(() => {
+                this.isCaigut = false;
+                this.comptadorEnrere = false;
+            }, 3000);
         }
+        console.log(joc.pala.posicio);
     }
     
     actualizarVidas() {
@@ -101,7 +108,12 @@ class Joc {
         }
         this.isGuanyat = true;
     }
-
+    
+    playWinMusic() {
+        this.stopMusic();
+        this.winMusic.play();
+        this.musicPlaying = this.winMusic;
+    }
     cuentaAtras() {
         $('#cuentaAtras').fadeIn(100);
         $('#cuentaAtras').text('3');

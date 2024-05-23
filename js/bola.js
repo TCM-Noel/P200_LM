@@ -6,8 +6,8 @@ class Bola {
     constructor(puntPosicio, radi) {
         this.radi = radi;
         this.posicio = puntPosicio;
-        this.vx = -0.8;
-        this.vy = -0.8;
+        this.vx = -1,3;
+        this.vy = -1,3;
         this.color = "#fff";
     }
 
@@ -65,6 +65,7 @@ class Bola {
             xoc=true;
             this.vy = -this.vy;
             if (joc.vides !== 0) {
+                joc.pala.posicio = new Punt((joc.canvas.width-60)/2,joc.canvas.height-15);
                 joc.isCaigut = true;
                 joc.cuentaAtras();
             }
@@ -75,6 +76,18 @@ class Bola {
         if (colisioPala) {
             switch (colisioPala.vora) {
                 case "superior":
+                    // Determina la posición relativa en la pala donde ocurrió la colisión
+                    let palaCentroX = joc.pala.posicio.x + joc.pala.amplada / 2;
+                    let impactPos = (this.posicio.x - palaCentroX) / (joc.pala.amplada / 2);
+                    
+                    // Ajusta vx y vy en función de la posición de impacto
+                    let angleMax = Math.PI / 3;  // 60 grados
+                    let angle = impactPos * angleMax;
+                    let speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                    this.vx = speed * Math.sin(angle);
+                    this.vy = -speed * Math.cos(angle);
+
+                    break;
                 case "inferior":
                     this.vy = -this.vy;
                     break;
