@@ -76,6 +76,18 @@ class Bola {
         if (colisioPala) {
             switch (colisioPala.vora) {
                 case "superior":
+                    // Determina la posición relativa en la pala donde ocurrió la colisión
+                    let palaCentroX = joc.pala.posicio.x + joc.pala.amplada / 2;
+                    let impactPos = (this.posicio.x - palaCentroX) / (joc.pala.amplada / 2);
+                    
+                    // Ajusta vx y vy en función de la posición de impacto
+                    let angleMax = Math.PI / 3;  // 60 grados
+                    let angle = impactPos * angleMax;
+                    let speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                    this.vx = speed * Math.sin(angle);
+                    this.vy = -speed * Math.cos(angle);
+
+                    break;
                 case "inferior":
                     this.vy = -this.vy;
                     break;
