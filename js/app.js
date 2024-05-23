@@ -6,14 +6,11 @@ $(document).ready(function() {
 
     let myCanvas = document.getElementById("joc");
     let ctx = myCanvas.getContext("2d");
-
-<<<<<<< Updated upstream
-=======
+    
     let startMusic = document.getElementById("startMusic");
     let modeMusic = document.getElementById("modeMusic");
     let winMusic = document.getElementById("winMusic");
     let loseMusic = document.getElementById("loseMusic");
->>>>>>> Stashed changes
     joc = new Joc(myCanvas, ctx);
 
     $('#startButton').click(function() {
