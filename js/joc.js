@@ -69,6 +69,7 @@ class Joc {
         } else if (this.isGuanyat) {
             $('#missatgeModal').text('Has guanyat!')
             $('#modal').fadeIn(200);
+            this.playWinMusic();
         } else if (!this.isCaigut) {
             this.bola.update();
             this.pala.update();
@@ -107,7 +108,12 @@ class Joc {
         }
         this.isGuanyat = true;
     }
-
+    
+    playWinMusic() {
+        this.stopMusic();
+        this.winMusic.play();
+        this.musicPlaying = this.winMusic;
+    }
     cuentaAtras() {
         $('#cuentaAtras').fadeIn(100);
         $('#cuentaAtras').text('3');

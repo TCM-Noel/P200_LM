@@ -7,11 +7,15 @@ $(document).ready(function() {
     let myCanvas = document.getElementById("joc");
     let ctx = myCanvas.getContext("2d");
 
+    let startMusic = document.getElementById("startMusic");
+    let modeMusic = document.getElementById("modeMusic");
+    let winMusic = document.getElementById("winMusic");
     joc = new Joc(myCanvas, ctx);
 
     $('#startButton').click(function() {
         $('#startButton').hide(); // Oculta el botón de inicio
         $('#modalidades').show(); // Muestra las modalidades
+        startMusic.play(); // Reproduce la música de inicio
     });
 
     // Eventos para los botones de modalidad
@@ -29,8 +33,11 @@ $(document).ready(function() {
 
     function iniciarJuego(modalidad) {
         console.log(modalidad + " seleccionada");
-        $('#menu').hide(); // Oculta el menú
-        $('#principal').show(); // Muestra el canvas
+        startMusic.pause(); 
+        startMusic.currentTime = 0;
+        modeMusic.play(); 
+        $('#menu').hide(); 
+        $('#principal').show(); 
         joc.inicialitza(modalidad); // Inicializa el juego con la modalidad seleccionada
         animacio();
     }
