@@ -118,8 +118,20 @@ class Bola {
                         }
                         totxo.tocat = true;
                         xoc = true;
+                  
                     }
-                } 
+                    else {
+                        // Verificació colisió amb esquines totxos
+                        let colisioEsquina = this.interseccioSegmentEsquina(trajectoria, totxo);
+                        if (colisioEsquina) {
+                            // Cambia la dirección de ambas componentes de la velocidad
+                            this.vx = -this.vx;
+                            this.vy = -this.vy;
+                            totxo.tocat = true;
+                            xoc = true;
+                        }
+                    }
+                }
             }
         }
         
@@ -128,7 +140,21 @@ class Bola {
             this.posicio.y = trajectoria.puntB.y;
         }
     }
+    interseccioSegmentEsquina(segment, rectangle) {
+        const esquinas = [
+            new Punt(rectangle.posicio.x, rectangle.posicio.y),  // Esquina superior izquierda
+            new Punt(rectangle.posicio.x + rectangle.amplada, rectangle.posicio.y),  // Esquina superior derecha
+            new Punt(rectangle.posicio.x, rectangle.posicio.y + rectangle.alcada),  // Esquina inferior izquierda
+            new Punt(rectangle.posicio.x + rectangle.amplada, rectangle.posicio.y + rectangle.alcada)  // Esquina inferior derecha
+        ];
 
+        for (let esquina of esquinas) {
+            if (this.distancia(segment.puntB, esquina) <= this.radi) {
+                return true;
+            }
+        }
+        return false;
+    }
     interseccioSegmentRectangle(segment, rectangle) {
         let puntI;
         let distanciaI;
