@@ -1,3 +1,17 @@
+@font-face {
+    font-family: 'sm64';
+    src: url('SuperMario256.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'sm64_sinrelleno';
+    src: url('SuperMario256_sinRelleno.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -8,6 +22,7 @@ body {
     background: #333 url(../images/edificio\ noche.gif);
     color: #eee;
     background-size: cover;
+    font-family: 'sm64_sinrelleno', sans-serif;
 }
 
 #principal {
