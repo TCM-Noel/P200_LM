@@ -7,17 +7,10 @@ $(document).ready(function() {
     let myCanvas = document.getElementById("joc");
     let ctx = myCanvas.getContext("2d");
     
-    let startMusic = document.getElementById("startMusic");
-    let modeMusic = document.getElementById("modeMusic");
-    let winMusic = document.getElementById("winMusic");
-    let loseMusic = document.getElementById("loseMusic");
     joc = new Joc(myCanvas, ctx);
 
-    $('#startButton').click(function() {
-        $('#startButton').hide(); // Oculta el botón de inicio
-        $('#modalidades').show(); // Muestra las modalidades
-        startMusic.play(); // Reproduce la música de inicio
-    });
+    let colores = ['#4CF', '#8D1', '#D30'];
+    for (let i = 1; i <= 3; i++) $(`#modo${i}`).css('color', `${colores[i-1]}`); 
 
     // Eventos para los botones de modalidad
     $('#modo1').click(function() {
@@ -32,17 +25,35 @@ $(document).ready(function() {
         iniciarJuego('modalidad3');
     });
 
+    $('#activarVolum').click(function() {
+        reproduceMusicaPlay('startMusic')
+    });
+
+    $('#desactivarVolum').click(function() {
+        reproduceMusicaStop('startMusic')
+    });
+
     function iniciarJuego(modalidad) {
         console.log(modalidad + " seleccionada");
-        startMusic.pause(); 
-        startMusic.currentTime = 0;
-        modeMusic.play(); 
+        reproduceMusicaStop('startMusic')
+        reproduceMusicaPlay('modeMusic')
         $('#menu').hide(); 
         $('#principal').show(); 
         joc.inicialitza(modalidad); // Inicializa el juego con la modalidad seleccionada
         animacio();
     }
 });
+
+function reproduceMusicaPlay(queMusica) {
+    let startMusic = document.getElementById(`${queMusica}`);
+    startMusic.play(); // Reproduce la música 
+}
+
+function reproduceMusicaStop(queMusica) {
+    let startMusic = document.getElementById(`${queMusica}`);
+    startMusic.currentTime = 0;
+    startMusic.pause(); // Pausa la musica
+}
 
 function animacio() {
     joc.update();
@@ -52,3 +63,4 @@ function animacio() {
 function tornarAlMenu(){ 
     location.href="index.html";
 }
+

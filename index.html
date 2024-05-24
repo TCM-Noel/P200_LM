@@ -6,15 +6,50 @@
     <link rel="stylesheet" href="css/estils.css">
 </head>
 <body>
+
+    <!--
     <div id="menu">
-        <h1>BreakOut 23-24</h1>
-        <button id="startButton">Start Game</button>
-        <div id="modalidades" style="display:none;">
-            <button id="modo1">Modalidad 1</button>
-            <button id="modo2">Modalidad 2</button>
-            <button id="modo3">Modalidad 3</button>
+        <div>
+            <h1>BreakOut 23-24</h1>
+
+            <h2>Introduce tu nombre</h2>
+            <input type="text"/>
+
+            <h2>Selecciona la modalidad</h2>
+            <div id="modalidades">
+                <button id="modo1" onclick="reproduceMusica()">Modalidad 1</button>
+                <button id="modo2">Modalidad 2</button>
+                <button id="modo3">Modalidad 3</button>
+            </div>
+
+            <button id="activarVolum">Activar volum</button>
+            <button id="desactivarVolum">Desactivar volum</button>
+        </div>
+    </div>-->
+
+    <div id="menu">
+        <div id="panelCentral">
+            <h1>BREAKOUT 2023-2024</h1>
+            <h3 style="margin-top: 4rem;">NOM</h3>
+            <input type="text" required>
+            <h3>MODALITAT</h3>
+            <div id="modalidades">
+                <h4 id="modo1">Modalitat 1</h4>
+                <h4 id="modo2">Modalitat 2</h4>
+                <h4 id="modo3">Modalitat 3</h4>
+            </div>
+            <h3>VOLUM</h3>
+            <span class="vol" id="activarVolum">SI</span> <span class="vol" id="desactivarVolum">NO</span>
+        </div>
+
+        <div id="instrucciones">
+            <p style="color:#d3d340;">Per moure't usa:</p>
+            <p><span class="tecla">A</span><span class="tecla">D</span></p>
+            <p>o</p>
+            <p><span class="tecla">⬅</span><span class="tecla">➡</span></p>
         </div>
     </div>
+    
     <div id="principal" style="display:none;">
         <canvas id="joc"></canvas>
         <div id="modal" style="display: none;">
@@ -30,10 +65,7 @@
     </div>
 
     <audio id="startMusic" src="audio/Zelda Link to the Past - Hyrule Field (Gameboy 8-bit).mp3"></audio>
-    <audio id="modeMusic" src="audio/Zelda Link to the Past - Hyrule Field (Gameboy 8-bit).mp3"></audio>
-    <audio id="winMusic" src="audio/Victory! (Trainer) - Pokémon Gold Silver Crystal Soundtrack.mp3"></audio>
-    <audio id="startMusic" src="audio/Zelda Link to the Past - Hyrule Field (Gameboy 8-bit).mp3"></audio>
-    <audio id="modeMusic" src="audio/Zelda Link to the Past - Hyrule Field (Gameboy 8-bit).mp3"></audio>
+    <audio id="modeMusic" src="audio/Blue (Da Ba Dee) [8 Bit Tribute to Eiffel 65] - 8 Bit Universe-trimmed.mp3"></audio>
     <audio id="winMusic" src="audio/Victory! (Trainer) - Pokémon Gold Silver Crystal Soundtrack.mp3"></audio>
     <audio id="loseMusic" src="audio/Lose sound effects.mp3"></audio>
     

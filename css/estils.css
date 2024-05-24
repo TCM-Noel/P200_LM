@@ -12,6 +12,15 @@
     font-weight: normal;
 }
 
+@font-face {
+    font-family: 'atari';
+    src: url('AtariClassicChunky-PxXP.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+
+/** ------------------- GENERAL ------------------- **/
+
 * {
     padding: 0;
     margin: 0;
@@ -19,16 +28,133 @@
 
 body {
     text-align: center;
-    background: #333 url(../images/edificio\ noche.gif);
+    background: #333 url('../images/espacio.webp');
+    background-blend-mode: hard-light;
+    background-position: -20px -150px;
     color: #eee;
     background-size: cover;
-    font-family: 'sm64_sinrelleno', sans-serif;
+    font-family: 'sm64', sans-serif;
 }
+
+/** ------------------- MENU ------------------- **/
+
+#menu {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'atari', sans-serif;
+}
+
+#panelCentral {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    > * {
+        margin-bottom: 20px; 
+    }
+
+    h3 {
+        margin-top: 30px;
+        color: #aaaaaa;
+    }
+
+    span {
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    #modalidades {
+        cursor: pointer;
+
+        > * {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+#instrucciones {
+    position: absolute;
+    text-align: center !important;
+    justify-content: center;
+    top: 50%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    border: 5px solid white;
+    border-radius: 10px;
+    padding: 20px;
+
+    > * {
+        margin-bottom: 10px;
+    }
+
+    .tecla {
+        display: inline-block;
+        flex-direction: row !important;
+        font-size: 18px;
+        vertical-align: middle;
+        width: 20px;
+        height: 20px;
+        padding: 2px;
+        border: 1px solid white;
+    }
+}
+
+/* #menu {
+    position: absolute;
+    width: 50%;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+
+    * {
+        margin-top: 20px !important;
+    }
+
+    > div {
+        position: relative;
+        width: fit-content;
+        padding: 3rem;
+        border: 1px solid white;
+        border-radius: 10px;
+    }
+
+    input {
+        padding: 5px;
+        text-align: center;
+        cursor: text;
+    }
+
+    button {
+        display: inline-block;
+        margin: 5px;
+        padding: 10px 20px;
+        font-size: 1rem;
+        color: rgb(49, 49, 49);
+        border: 2px solid #333;
+        border-radius: 5px;
+        font-family: 'sm64_sinrelleno', sans-serif;
+        cursor: pointer;
+    }
+
+    > div > button {
+        font-family: sans-serif;
+    }
+    
+} */
+
+/** ------------------- JUEGO ------------------- **/
 
 #principal {
     width: 960px;
     margin: 20px auto;
     padding: 20px;
+    text-align: center;
+    display: none;
 }
 
 #joc {
@@ -77,39 +203,11 @@ body {
     border-radius: 25px;
 }
 
-#menu {
-    text-align: center;
-    margin-top: 50px;
-}
-
-#principal {
-    text-align: center;
-    display: none;
-}
 
 canvas {
     border: 1px solid black; /* Esto es opcional, solo para que el canvas sea más visible */
 }
 
-#modalidades {
-    margin-top: 20px;
-}
-
-#modalidades button {
-    display: inline-block;
-    margin: 5px;
-    padding: 10px 20px;
-    font-size: 1em;
-    color: #333;
-    background-color: #eee;
-    border: 2px solid #333;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#modalidades button:hover {
-    background-color: #ddd;
-}
 
 #modal {
     background-color: #ddd;

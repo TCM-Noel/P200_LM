@@ -88,9 +88,6 @@ class Bola {
                     this.vy = -speed * Math.cos(angle);
 
                     break;
-                case "inferior":
-                    this.vy = -this.vy;
-                    break;
                 case "esquerra":
                 case "dreta":
                     this.vx = -this.vx;
