@@ -1,9 +1,15 @@
 /*
 * APLICACIÓ
 */
+let puntuacionesStorage //me recomnedaba dejarla fuera de la clase
 
 $(document).ready(function() {
-
+    
+    const storedPuntuacions = localStorage.getItem('puntuaciones');
+    if (storedPuntuacions) {
+        puntuaciones = JSON.parse(storedPuntuacions);
+        actualizarListaPuntuacions();
+    }
     let myCanvas = document.getElementById("joc");
     let ctx = myCanvas.getContext("2d");
     
@@ -64,12 +70,20 @@ function tornarAlMenu(){
     location.href="index.html";
 }
 function afegirPuntuacio(nom, punts) {
-    let llistaPuntuacions = document.getElementById('llistaPuntuacions');
-    let puntuacio = document.createElement('div');
-    //creem un element div amb la classe puntuacioFinal
-    puntuacio.className = 'puntuacioFinal';
-    //posem el nom i els punts dins l'element div
-    puntuacio.innerHTML = `<span class="nomJugador">${nom}</span><span class="puntacioJugador">${punts}</span>`;
-    //afegim l'element div a la llista de puntuacions
-    llistaPuntuacions.appendChild(puntuacio);
+    puntuaciones.push({ nom, punts });
+    localStorage.setItem('puntuaciones', JSON.stringify(puntuaciones)); // Guardar en localStorage
+    actualizarListaPuntuacions();
+}
+
+function actualizarListaPuntuacions() {
+        let llistaPuntuacions = document.getElementById('llistaPuntuacions');
+        llistaPuntuacions.innerHTML = '';
+        puntuaciones.forEach(puntuacio => {
+        let puntuacioDiv = document.createElement('div'); // Crear un div
+        puntuacioDiv.className = 'puntuacioFinal'; // Añadir la clase
+        // Añadir el contenido del div con el nombre y la puntuación
+        puntuacioDiv.innerHTML = `<span class="nomJugador">${puntuacio.nom}</span><span class="puntuacioJugador">${puntuacio.punts}</span>`;
+        // Añadir el div a la lista
+        llistaPuntuacions.appendChild(puntuacioDiv);
+    });
 }

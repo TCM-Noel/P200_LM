@@ -41,6 +41,7 @@ class Joc {
         this.bola.draw(this.ctx);
         this.mur.generaMur(modalidad);
         this.mur.draw();
+        this.tempsInicial = Date.now();
         
         $(document).on("keydown", {joc:this}, (e) => {
             if (e.keyCode === joc.key.LEFT.code || e.keyCode === joc.key.A.code) {
@@ -140,9 +141,9 @@ class Joc {
                 }
             }
         }
-        let temps = Date.now();
-        let tmpsTransc = (tmpsTransc - temps) / 1000; // Tiempo en segundos
-        let score = ( destruits/ timeElapsed) * this.getMode();
+        let tempsFinal = Date.now();
+        let tmpsTransc = (tempsFinal - this.startTime) / 1000; // Tiempo en segundos
+        let score = ( destruits/ tmpsTransc) * this.getmode();
         return Math.round(score);
         
     }
