@@ -63,4 +63,13 @@ function animacio() {
 function tornarAlMenu(){ 
     location.href="index.html";
 }
-
+function afegirPuntuacio(nom, punts) {
+    let llistaPuntuacions = document.getElementById('llistaPuntuacions');
+    let puntuacio = document.createElement('div');
+    //creem un element div amb la classe puntuacioFinal
+    puntuacio.className = 'puntuacioFinal';
+    //posem el nom i els punts dins l'element div
+    puntuacio.innerHTML = `<span class="nomJugador">${nom}</span><span class="puntacioJugador">${punts}</span>`;
+    //afegim l'element div a la llista de puntuacions
+    llistaPuntuacions.appendChild(puntuacio);
+}

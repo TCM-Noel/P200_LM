@@ -36,8 +36,38 @@ body {
     font-family: 'sm64', sans-serif;
 }
 
-/** ------------------- MENU ------------------- **/
+/** ------------------- PUNTUACIONS ------------------- **/
+#panellPuntuacio{
+    position: fixed;
+    left: 100px;
+    top: 30%;
+    transform: translateY(-50%);
+    background: none;
+    border: solid 5px #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    color: #ffffff;
+    z-index: 1000;
 
+}
+#llistaPuntuacions{
+    margin-top: 10px;
+}
+.nomJugador{
+    font-weight: bold;
+}
+
+.puntuacioJugador {
+    font-weight: bold;
+    color: #FFD700;  /* dorado per puntuacions */
+}
+.puntuacioFinal{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+/** ------------------- MENU ------------------- **/
 #menu {
     position: relative;
     width: 100vw;

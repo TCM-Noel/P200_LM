@@ -70,6 +70,9 @@ class Joc {
             $('#missatgeModal').text('Has guanyat!')
             $('#modal').fadeIn(200);
             this.playWinMusic();
+            const nomJugador = document.getElementById('nomJugador').value; //no se si hacerlo con let o const
+            const puntsJugador = this.calculateScore(); // calculem puntuacio
+            afegirPuntuacio(nomJugador, puntsJugador);
         } else if (!this.isCaigut) {
             this.bola.update();
             this.pala.update();
@@ -126,5 +129,31 @@ class Joc {
                 $('#cuentaAtras').hide();
             }
         }, 1000);
+    }
+    calcularPuntuacio(){
+        //basicamente la formula es bloques_destruidos / tiempo * modo
+        let destruits = 0;
+        for (let i = 0; i < this.mur.columnaCount; i++) {
+            for (let j = 0; j < this.mur.filaCount; j++) {
+                if (this.mur.totxos[i][j] && this.mur.totxos[i][j].tocat == true) {
+                    destruits++;
+                }
+            }
+        }
+        let temps = Date.now();
+        let tmpsTransc = (tmpsTransc - temps) / 1000; // Tiempo en segundos
+        let score = ( destruits/ timeElapsed) * this.getMode();
+        return Math.round(score);
+        
+    }
+    getmode() {
+        switch (this.modalidad) {
+            case 'modalidad1':
+                return 1;
+            case 'modalidad2':
+                return 2;
+            case 'modalidad3':
+                return 3;
+        }
     }
 }
