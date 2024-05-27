@@ -71,8 +71,8 @@ class Joc {
             $('#missatgeModal').text('Has guanyat!')
             $('#modal').fadeIn(200);
             this.playWinMusic();
-            const nomJugador = document.getElementById('nomJugador').value; //no se si hacerlo con let o const
-            const puntsJugador = this.calculateScore(); // calculem puntuacio
+            let nomJugador = document.getElementById('nomJugador').value; //no se si hacerlo con let o const
+            let puntsJugador = this.calculateScore(); // calculem puntuacio
             afegirPuntuacio(nomJugador, puntsJugador);
         } else if (!this.isCaigut) {
             this.bola.update();

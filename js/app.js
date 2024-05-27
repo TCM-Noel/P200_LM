@@ -70,15 +70,15 @@ function tornarAlMenu(){
     location.href="index.html";
 }
 function afegirPuntuacio(nom, punts) {
-    puntuaciones.push({ nom, punts });
-    localStorage.setItem('puntuaciones', JSON.stringify(puntuaciones)); // Guardar en localStorage
+    puntuacionesStorage.push({ nom, punts });
+    localStorage.setItem('puntuaciones', JSON.stringify(puntuacionesStorage)); // Guardar en localStorage
     actualizarListaPuntuacions();
 }
 
 function actualizarListaPuntuacions() {
-        let llistaPuntuacions = document.getElementById('llistaPuntuacions');
-        llistaPuntuacions.innerHTML = '';
-        puntuaciones.forEach(puntuacio => {
+    let llistaPuntuacions = document.getElementById('llistaPuntuacions');
+    llistaPuntuacions.innerHTML = '';
+    puntuacionesStorage.forEach(puntuacio => {
         let puntuacioDiv = document.createElement('div'); // Crear un div
         puntuacioDiv.className = 'puntuacioFinal'; // Añadir la clase
         // Añadir el contenido del div con el nombre y la puntuación
