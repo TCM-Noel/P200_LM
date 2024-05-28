@@ -12,6 +12,7 @@ class Joc {
         this.isGuanyat = false;
         this.isCaigut = false;
         this.comptadorEnrere = false; 
+        this.nomJugador = '';
        
         this.bola = new Bola(new Punt(this.canvas.width/2,this.canvas.height-this.canvas.height/4),3);
         this.pala = new Pala(new Punt((this.canvas.width-60)/2,this.canvas.height-15),60,4);
@@ -71,9 +72,8 @@ class Joc {
             $('#missatgeModal').text('Has guanyat!')
             $('#modal').fadeIn(200);
             this.playWinMusic();
-            let nomJugador = document.getElementById('nomJugador').value; //no se si hacerlo con let o const
             let puntsJugador = this.calculateScore(); // calculem puntuacio
-            //afegirPuntuacio(nomJugador, puntsJugador);
+            afegirPuntuacio(this.nomJugador, puntsJugador);
         } else if (!this.isCaigut) {
             this.bola.update();
             this.pala.update();

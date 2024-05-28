@@ -97,8 +97,8 @@ class Bola {
         }
 
         // Xoc amb els totxos del mur
-        for (let c = 0; c < joc.mur.columnaCount; c++) {
-            for (let r = 0; r < joc.mur.filaCount; r++) {
+        for (let c = 0; c < joc.mur.columnaCount && !xoc; c++) {
+            for (let r = 0; r < joc.mur.filaCount && !xoc; r++) {
                 const totxo = joc.mur.totxos[c][r];
                 if (totxo && !totxo.tocat) {
                     let colisioTotxo = this.interseccioSegmentRectangle(trajectoria, totxo);
@@ -115,7 +115,6 @@ class Bola {
                         }
                         totxo.tocat = true;
                         xoc = true;
-                  
                     }
                     else {
                         // Verificació colisió amb esquines totxos

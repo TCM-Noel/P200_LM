@@ -16,8 +16,26 @@ $(document).ready(function() {
     
     joc = new Joc(myCanvas, ctx);
 
-    let colores = ['#4CF', '#8D1', '#D30'];
-    for (let i = 1; i <= 3; i++) $(`#modo${i}`).css('color', `${colores[i-1]}`); 
+    let colores = ['#36a3cc', '#6aa01e', '#9f3212']
+    for (let i = 1; i <= 3; i++) $(`#modo${i}`).css({
+        'color': `${colores[i-1]}`,
+        'pointer-events': 'none'
+    });
+    $('#nomJugador').on('keyup', () => {
+        let colores = [];
+        let eventos = 'none';
+        if ($('#nomJugador').val() != "") {
+            colores = ['#4CF', '#8D1', '#D30'];
+            eventos = 'all'
+        } else {
+            colores = ['#36a3cc', '#6aa01e', '#9f3212']
+            eventos = 'none'
+        }
+        for (let i = 1; i <= 3; i++) $(`#modo${i}`).css({
+            'color': `${colores[i-1]}`,
+            'pointer-events': `${eventos}`
+        });
+    });
 
     // Eventos para los botones de modalidad
     $('#modo1').click(function() {
@@ -47,6 +65,7 @@ $(document).ready(function() {
         $('#menu').hide(); 
         $('#principal').show(); 
         joc.inicialitza(modalidad); // Inicializa el juego con la modalidad seleccionada
+        joc.nomJugador = $('#nomJugador').val();
         animacio();
     }
 });

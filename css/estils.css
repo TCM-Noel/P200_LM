@@ -107,6 +107,14 @@ body {
             margin-bottom: 10px;
         }
     }
+
+    #nomJugador {
+        padding: 10px;
+        font-family: 'atari';
+        background-color: rgb(215, 215, 215);
+        font-weight: 100;
+        text-align: center;
+    }
 }
 
 /** ------------------- INSTRUCCIONES ------------------- **/
