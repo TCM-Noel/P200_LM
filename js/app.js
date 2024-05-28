@@ -4,11 +4,6 @@
 var puntuacionesStorage = []; // Inicializar la variable como un array vacío
 
 $(document).ready(function() {
-    afegirPuntuacio("Noel", 2000);
-    afegirPuntuacio("Alex", 4000);
-    afegirPuntuacio("efren", 9999999999);
-
-    afegirPuntuacio("el jefe", 1);
 
     const storedPuntuacions = localStorage.getItem('puntuaciones');
     if (storedPuntuacions) {
@@ -92,6 +87,7 @@ function animacio() {
 }
 
 function tornarAlMenu(){ 
+    joc.isGuardat = false;
     location.href="index.html";
 }
 
@@ -102,7 +98,7 @@ function afegirPuntuacio(nom, punts) {
 }
 
 function actualizarListaPuntuacions() {
-        //mètode bombolla per ordenar
+    //mètode bombolla per ordenar
     for(let i=0; i < puntuacionesStorage.length; i++){
         for(let j=1; j < puntuacionesStorage.length-i; j++){
             if(puntuacionesStorage[j-1].punts < puntuacionesStorage[j].punts){

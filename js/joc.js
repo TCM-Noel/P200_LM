@@ -9,11 +9,13 @@ class Joc {
         this.amplada = canvas.width;
         this.alcada = canvas.height;
         this.vides = 3;
+        this.modalidad = '';
         this.isGuanyat = false;
         this.isCaigut = false;
         this.comptadorEnrere = false; 
+        this.tempsInicial;
         this.nomJugador = '';
-        this.isGuardat = true;
+        this.isGuardat = false;
        
         this.bola = new Bola(new Punt(this.canvas.width/2,this.canvas.height-this.canvas.height/4),3);
         this.pala = new Pala(new Punt((this.canvas.width-60)/2,this.canvas.height-15),60,4);
@@ -43,6 +45,7 @@ class Joc {
         this.bola.draw(this.ctx);
         this.mur.generaMur(modalidad);
         this.mur.draw();
+        this.modalidad = modalidad;
         this.tempsInicial = Date.now();
         
         $(document).on("keydown", {joc:this}, (e) => {
@@ -75,7 +78,10 @@ class Joc {
             reproduceMusicaStop('modeMusic');
             reproduceMusicaPlay('winMusic');
             let puntsJugador = this.calcularPuntuacio(); // calculem puntuacio
-            afegirPuntuacio(this.nomJugador, puntsJugador);
+            if (!this.isGuardat) {
+                afegirPuntuacio(this.nomJugador, puntsJugador);
+                this.isGuardat = true;
+            }
         } else if (!this.isCaigut) {
             this.bola.update();
             this.pala.update();
@@ -140,19 +146,19 @@ class Joc {
             }
         }
         let tempsFinal = Date.now();
-        let tmpsTransc = (tempsFinal - this.startTime) / 1000; // Tiempo en segundos
-        let score = ( destruits/ tmpsTransc) * this.getmode();
+        let tmpsTransc = (tempsFinal - this.tempsInicial) / 1000; // Tiempo en segundos
+        let score = (destruits * tmpsTransc) * this.modeJoc();
         return Math.round(score);
-        
     }
-    getmode() {
+
+    modeJoc() {
         switch (this.modalidad) {
             case 'modalidad1':
-                return 1;
+                return 1.25;
             case 'modalidad2':
-                return 2;
+                return 1.50;
             case 'modalidad3':
-                return 3;
+                return 1.75;
         }
     }
 }
