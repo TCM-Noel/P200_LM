@@ -62,10 +62,10 @@ $(document).ready(function() {
         console.log(modalidad + " seleccionada");
         reproduceMusicaStop('startMusic');
         reproduceMusicaPlay('modeMusic');
+        joc.nomJugador = $('#nomJugador').val();
         $('#menu').hide(); 
         $('#principal').show(); 
         joc.inicialitza(modalidad); // Inicializa el juego con la modalidad seleccionada
-        joc.nomJugador = $('#nomJugador').val();
         animacio();
     }
 });

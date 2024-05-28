@@ -72,7 +72,7 @@ class Bola {
         }
         
         //Xoc amb la pala
-        let colisioPala = this.interseccioSegmentRectangle(trajectoria, joc.pala);
+        let colisioPala = this.interseccioSegmentRectangle(trajectoria, joc.pala, false);
         if (colisioPala) {
             switch (colisioPala.vora) {
                 case "superior":
@@ -136,6 +136,7 @@ class Bola {
             this.posicio.y = trajectoria.puntB.y;
         }
     }
+    
     interseccioSegmentEsquina(segment, rectangle) {
         const esquinas = [
             new Punt(rectangle.posicio.x, rectangle.posicio.y),  // Esquina superior izquierda
@@ -151,6 +152,7 @@ class Bola {
         }
         return false;
     }
+
     interseccioSegmentRectangle(segment, rectangle) {
         let puntI;
         let distanciaI;
@@ -199,6 +201,7 @@ class Bola {
                 voraI = "inferior";
             }
         }
+        
         // Vora esquerra
         puntI = segment.puntInterseccio(segmentVoraEsquerra);
         if (puntI) {

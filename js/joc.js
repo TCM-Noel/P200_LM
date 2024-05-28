@@ -13,6 +13,7 @@ class Joc {
         this.isCaigut = false;
         this.comptadorEnrere = false; 
         this.nomJugador = '';
+        this.isGuardat = true;
        
         this.bola = new Bola(new Punt(this.canvas.width/2,this.canvas.height-this.canvas.height/4),3);
         this.pala = new Pala(new Punt((this.canvas.width-60)/2,this.canvas.height-15),60,4);
@@ -71,8 +72,9 @@ class Joc {
         } else if (this.isGuanyat) {
             $('#missatgeModal').text('Has guanyat!')
             $('#modal').fadeIn(200);
-            this.playWinMusic();
-            let puntsJugador = this.calculateScore(); // calculem puntuacio
+            reproduceMusicaStop('modeMusic');
+            reproduceMusicaPlay('winMusic');
+            let puntsJugador = this.calcularPuntuacio(); // calculem puntuacio
             afegirPuntuacio(this.nomJugador, puntsJugador);
         } else if (!this.isCaigut) {
             this.bola.update();
@@ -87,7 +89,7 @@ class Joc {
                 this.comptadorEnrere = false;
             }, 3000);
         }
-        console.log(joc.pala.posicio);
+        //console.log(joc.pala.posicio);
     }
     
     actualizarVidas() {
@@ -113,11 +115,6 @@ class Joc {
         this.isGuanyat = true;
     }
     
-    playWinMusic() {
-        this.stopMusic();
-        this.winMusic.play();
-        this.musicPlaying = this.winMusic;
-    }
     cuentaAtras() {
         $('#cuentaAtras').fadeIn(100);
         $('#cuentaAtras').text('3');
@@ -131,6 +128,7 @@ class Joc {
             }
         }, 1000);
     }
+
     calcularPuntuacio(){
         //basicamente la formula es bloques_destruidos / tiempo * modo
         let destruits = 0;
