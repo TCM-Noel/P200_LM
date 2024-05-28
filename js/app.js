@@ -1,9 +1,12 @@
-/*
-* APLICACIÓ
-*/
+var puntuacionesStorage = []; // Inicializar la variable como un array vacío
 
 $(document).ready(function() {
-
+    
+    const storedPuntuacions = localStorage.getItem('puntuaciones');
+    if (storedPuntuacions) {
+        puntuacionesStorage = JSON.parse(storedPuntuacions);
+        actualizarListaPuntuacions();
+    }
     let myCanvas = document.getElementById("joc");
     let ctx = myCanvas.getContext("2d");
     
@@ -26,17 +29,17 @@ $(document).ready(function() {
     });
 
     $('#activarVolum').click(function() {
-        reproduceMusicaPlay('startMusic')
+        reproduceMusicaPlay('startMusic');
     });
 
     $('#desactivarVolum').click(function() {
-        reproduceMusicaStop('startMusic')
+        reproduceMusicaStop('startMusic');
     });
 
     function iniciarJuego(modalidad) {
         console.log(modalidad + " seleccionada");
-        reproduceMusicaStop('startMusic')
-        reproduceMusicaPlay('modeMusic')
+        reproduceMusicaStop('startMusic');
+        reproduceMusicaPlay('modeMusic');
         $('#menu').hide(); 
         $('#principal').show(); 
         joc.inicialitza(modalidad); // Inicializa el juego con la modalidad seleccionada
@@ -64,3 +67,21 @@ function tornarAlMenu(){
     location.href="index.html";
 }
 
+function afegirPuntuacio(nom, punts) {
+    puntuacionesStorage.push({ nom, punts });
+    localStorage.setItem('puntuaciones', JSON.stringify(puntuacionesStorage)); // Guardar en localStorage
+    actualizarListaPuntuacions();
+}
+
+function actualizarListaPuntuacions() {
+    let llistaPuntuacions = document.getElementById('llistaPuntuacions');
+    llistaPuntuacions.innerHTML = '';
+    puntuacionesStorage.forEach(puntuacio => {
+        let puntuacioDiv = document.createElement('div'); // Crear un div
+        puntuacioDiv.className = 'puntuacioFinal'; // Añadir la clase
+        // Añadir el contenido del div con el nombre y la puntuación
+        puntuacioDiv.innerHTML = `<span class="nomJugador">${puntuacio.nom}</span><span class="puntuacioJugador">${puntuacio.punts}</span>`;
+        // Añadir el div a la lista
+        llistaPuntuacions.appendChild(puntuacioDiv);
+    });
+}
