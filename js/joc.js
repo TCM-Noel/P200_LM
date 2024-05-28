@@ -73,7 +73,7 @@ class Joc {
             this.playWinMusic();
             let nomJugador = document.getElementById('nomJugador').value; //no se si hacerlo con let o const
             let puntsJugador = this.calculateScore(); // calculem puntuacio
-            afegirPuntuacio(nomJugador, puntsJugador);
+            //afegirPuntuacio(nomJugador, puntsJugador);
         } else if (!this.isCaigut) {
             this.bola.update();
             this.pala.update();

@@ -33,14 +33,15 @@ body {
     background-position: -20px -150px;
     color: #eee;
     background-size: cover;
-    font-family: 'sm64', sans-serif;
+    font-family: 'atari', sans-serif;
 }
 
 /** ------------------- PUNTUACIONS ------------------- **/
+
 #panellPuntuacio{
-    position: fixed;
-    left: 100px;
-    top: 30%;
+    position: absolute;
+    top: 50%;
+    left: 5%;
     transform: translateY(-50%);
     background: none;
     border: solid 5px #ffffff;
@@ -50,16 +51,18 @@ body {
     color: #ffffff;
     z-index: 1000;
 
+    > h1 {
+        margin-bottom: 20px; 
+        font-weight: 100;
+        font-size: 24px;
+    }
 }
+
 #llistaPuntuacions{
     margin-top: 10px;
 }
-.nomJugador{
-    font-weight: bold;
-}
 
 .puntuacioJugador {
-    font-weight: bold;
     color: #FFD700;  /* dorado per puntuacions */
 }
 .puntuacioFinal{
@@ -68,6 +71,7 @@ body {
     margin-bottom: 5px;
 }
 /** ------------------- MENU ------------------- **/
+
 #menu {
     position: relative;
     width: 100vw;
@@ -105,6 +109,8 @@ body {
     }
 }
 
+/** ------------------- INSTRUCCIONES ------------------- **/
+
 #instrucciones {
     position: absolute;
     text-align: center !important;
@@ -132,50 +138,12 @@ body {
     }
 }
 
-/* #menu {
-    position: absolute;
-    width: 50%;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
 
-    * {
-        margin-top: 20px !important;
+@media (max-width: 1300px) {
+    #panellPuntuacio, #instrucciones {
+        top: 80%;
     }
-
-    > div {
-        position: relative;
-        width: fit-content;
-        padding: 3rem;
-        border: 1px solid white;
-        border-radius: 10px;
-    }
-
-    input {
-        padding: 5px;
-        text-align: center;
-        cursor: text;
-    }
-
-    button {
-        display: inline-block;
-        margin: 5px;
-        padding: 10px 20px;
-        font-size: 1rem;
-        color: rgb(49, 49, 49);
-        border: 2px solid #333;
-        border-radius: 5px;
-        font-family: 'sm64_sinrelleno', sans-serif;
-        cursor: pointer;
-    }
-
-    > div > button {
-        font-family: sans-serif;
-    }
-    
-} */
+}
 
 /** ------------------- JUEGO ------------------- **/
 
