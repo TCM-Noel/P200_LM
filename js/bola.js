@@ -89,8 +89,15 @@ class Bola {
 
                     break;
                 case "esquerra":
+                    this.vx = -Math.abs(this.vx); // Asegurar que la bola rebote a la izquierda
+                    //this.posicio.x = joc.pala.posicio.x - this.radi-1; // Mover la bola fuera de la pala
+                    break;
                 case "dreta":
-                    this.vx = -this.vx;
+                    this.vx = Math.abs(this.vx); // Asegurar que la bola rebote a la derecha
+                    //this.posicio.x = joc.pala.posicio.x + joc.pala.amplada + this.radi+1; // Mover la bola fuera de la pala
+                    break;
+                case "inferior":
+                    this.posicio.y = joc.pala.posicio.y + joc.pala.alcada + this.radi+1;
                     break;
             }
             xoc = true;
