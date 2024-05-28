@@ -4,6 +4,11 @@
 var puntuacionesStorage = []; // Inicializar la variable como un array vacío
 
 $(document).ready(function() {
+    afegirPuntuacio("Noel", 2000);
+    afegirPuntuacio("Alex", 4000);
+    afegirPuntuacio("efren", 9999999999);
+
+    afegirPuntuacio("el jefe", 1);
 
     const storedPuntuacions = localStorage.getItem('puntuaciones');
     if (storedPuntuacions) {
@@ -78,8 +83,16 @@ function afegirPuntuacio(nom, punts) {
 }
 
 function actualizarListaPuntuacions() {
-    
-    // TODO: Ordenar lista de puntuaciones
+        //mètode bombolla per ordenar
+    for(let i=0; i < puntuacionesStorage.length; i++){
+        for(let j=1; j < puntuacionesStorage.length-i; j++){
+            if(puntuacionesStorage[j-1].punts < puntuacionesStorage[j].punts){
+                let aux = puntuacionesStorage[j-1];
+                puntuacionesStorage[j-1] = puntuacionesStorage[j];
+                puntuacionesStorage[j] = aux;
+            }
+        }
+    }
 
     let llistaPuntuacions = document.getElementById('llistaPuntuacions');
     llistaPuntuacions.innerHTML = '';
