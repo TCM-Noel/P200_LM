@@ -25,16 +25,25 @@
         <div id="panelCentral">
             <h1>BREAKOUT 2023-2024</h1>
             <h3 style="margin-top: 4rem;">NOM</h3>
-            <input type="text" required id="nomJugador"> 
+            <input type="text" required id="nomJugador" placeholder="Omple el requadre per jugar..."> 
             <h3>MODALITAT</h3>
             <div id="modalidades">
                 <h4 id="modo1">Modalitat 1</h4>
                 <h4 id="modo2">Modalitat 2</h4>
                 <h4 id="modo3">Modalitat 3</h4>
             </div>
+            <h3 id="creaNivell">CREA EL TEU NIVELL</h3>
             <h3>VOLUM</h3>
             <span class="vol" id="activarVolum">SI</span> <span class="vol" id="desactivarVolum">NO</span>
         </div>   
+    </div>
+
+    <div id="creadorNivell" style="display:none;">
+        <div id="requadreCreadorNivell">
+            <button class="btnCreadorAbajo" id="btnCreadorVolver" onclick="tornarAlMenu()">TORNAR</button>
+            <button class="btnCreadorAbajo" id="btnCreadorReset" onclick="tornarAlMenu()">RESET</button>
+            <button class="btnCreadorAbajo" id="btnCreadorJugar" onclick="tornarAlMenu()">JUGAR</button>
+        </div>
     </div>
     
     <div id="principal" style="display:none;">

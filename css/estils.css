@@ -41,7 +41,7 @@ body {
 #panellPuntuacio{
     position: absolute;
     top: 50%;
-    left: 5%;
+    left: 2.5%;
     transform: translateY(-50%);
     background: none;
     border: solid 5px #ffffff;
@@ -109,11 +109,13 @@ body {
     }
 
     #nomJugador {
+        width: 15rem;
+        font-size: 16px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
         padding: 10px;
-        font-family: 'atari';
         background-color: rgb(215, 215, 215);
-        font-weight: 100;
         text-align: center;
+        margin-bottom: 0px;
     }
 }
 
@@ -124,7 +126,7 @@ body {
     text-align: center !important;
     justify-content: center;
     top: 50%;
-    left: 85%;
+    left: 86%;
     transform: translate(-50%, -50%);
     border: 5px solid white;
     border-radius: 10px;
@@ -151,6 +153,53 @@ body {
     #panellPuntuacio, #instrucciones {
         top: 80%;
     }
+}
+
+/** ------------------- CREADOR DE NIVEL ------------------- */
+
+#creaNivell {
+    cursor: pointer;
+}
+
+#credorNivell {
+    position: relative; 
+    width: 100vw;
+    height: 100vh;    
+}
+
+#requadreCreadorNivell {
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    width: 740px;
+    height: 400px;
+    transform: translate(-50%, -50%);
+    background-color: #b1f0a4;
+}
+
+.btnCreadorAbajo {
+    font-family: 'atari', sans-serif;
+    position: absolute;
+    top: 105%;
+    border: 3px solid white;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: transparent;
+    color: white;
+}
+
+#btnCreadorVolver {
+    left: 0%;
+}
+
+#btnCreadorReset {
+    left: 45%;
+}
+
+#btnCreadorJugar {
+    color: rgb(46, 172, 46);
+    border-color: green;
+    left: 87.5%;
 }
 
 /** ------------------- JUEGO ------------------- **/

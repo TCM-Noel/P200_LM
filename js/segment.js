@@ -9,6 +9,14 @@ class Segment{
         this.puntB = puntB;
         this.color = "#3F3";
     }
+    
+    draw() {
+        ctx.beginPath();
+        ctx.strokeStyle = this.color;      
+        ctx.moveTo(this.puntA.x, this.puntA.y);
+        ctx.lineTo(this.puntB.x, this.puntB.y);
+        ctx.stroke();
+    }
 
     puntInterseccio(segment2){
         if (this.esTallen(segment2)){

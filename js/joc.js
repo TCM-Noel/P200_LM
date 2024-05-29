@@ -97,6 +97,11 @@ class Joc {
         }
         //console.log(joc.pala.posicio);
     }
+
+    // TODO: Funcion que crea el array que se le pasa a Mur
+    creaNivell(nouNivell) {
+        this.mur.crearMur(/* ARRAY */)
+    }
     
     actualizarVidas() {
         // Oculta los corazones según la cantidad de vidas restantes

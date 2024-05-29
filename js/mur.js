@@ -13,6 +13,38 @@ class Mur {
         this.totxoAlcada; // Alçada de cada totxo
         this.padding; // Espai entre totxos
         this.totxos = [];
+        this.murs = {
+            'modalidad1': {
+                color: "#4CF", // blue cel
+                totxos:[
+                    "aaaaaaaaaa",
+                    "aaaaaaaaaa",
+                    "aaaaaaaaaa",
+                    "aaaaaaaaaa",
+                    "aaaaaaaaaa"
+                ]
+            },
+            'modalidad2': {
+                color: "#8D1", // verd
+                totxos:[
+                    "aaaaaaaaaa",
+                    "    aa    ",
+                    "  aaaaaa  ",
+                    "  aaaaaa  ",
+                    "    aa    ",
+                ]
+            },
+            'modalidad3': {
+                color: "#D30", // vermell
+                totxos:[
+                    "aaaaaaaaaa",
+                    "a        a",
+                    " a      a ",
+                    "aa      aa",
+                    "  aaaaaa  ",
+                ]
+            }
+        }
     }
 
     generaMur(modalidad){
@@ -51,39 +83,12 @@ class Mur {
             }
         }
     }
+
+    crearMur(nouMur) {
+        this.murs.append(nouMur);
+    }
      
     defineixNivells(){
-        return {
-            'modalidad1': {
-                color: "#4CF", // blue cel
-                totxos:[
-                    "aaaaaaaaaa",
-                    "aaaaaaaaaa",
-                    "aaaaaaaaaa",
-                    "aaaaaaaaaa",
-                    "aaaaaaaaaa"
-                ]
-            },
-            'modalidad2': {
-                color: "#8D1", // verd
-                totxos:[
-                    "aaaaaaaaaa",
-                    "    aa    ",
-                    "  aaaaaa  ",
-                    "  aaaaaa  ",
-                    "    aa    ",
-                ]
-            },
-            'modalidad3': {
-                color: "#D30", // vermell
-                totxos:[
-                    "aaaaaaaaaa",
-                    "a        a",
-                    " a      a ",
-                    "aa      aa",
-                    "  aaaaaa  ",
-                ]
-            }
-        };
+        return this.murs;
     }
 };

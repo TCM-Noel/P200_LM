@@ -16,26 +16,7 @@ $(document).ready(function() {
     
     joc = new Joc(myCanvas, ctx);
 
-    let colores = ['#36a3cc', '#6aa01e', '#9f3212']
-    for (let i = 1; i <= 3; i++) $(`#modo${i}`).css({
-        'color': `${colores[i-1]}`,
-        'pointer-events': 'none'
-    });
-    $('#nomJugador').on('keyup', () => {
-        let colores = [];
-        let eventos = 'none';
-        if ($('#nomJugador').val() != "") {
-            colores = ['#4CF', '#8D1', '#D30'];
-            eventos = 'all'
-        } else {
-            colores = ['#36a3cc', '#6aa01e', '#9f3212']
-            eventos = 'none'
-        }
-        for (let i = 1; i <= 3; i++) $(`#modo${i}`).css({
-            'color': `${colores[i-1]}`,
-            'pointer-events': `${eventos}`
-        });
-    });
+    prepararBotons();
 
     // Eventos para los botones de modalidad
     $('#modo1').click(function() {
@@ -45,11 +26,15 @@ $(document).ready(function() {
     $('#modo2').click(function() {
         iniciarJuego('modalidad2');
     });
-
+    
     $('#modo3').click(function() {
         iniciarJuego('modalidad3');
     });
 
+    $('#creaNivell').click(function() {
+        obrirCreadorNivell();
+    });
+    
     $('#activarVolum').click(function() {
         reproduceMusicaPlay('startMusic');
     });
@@ -120,4 +105,51 @@ function actualizarListaPuntuacions() {
         // Añadir el div a la lista
         llistaPuntuacions.appendChild(puntuacioDiv);
     }
+}
+
+function prepararBotons() {
+    let colores = ['#36a3cc', '#6aa01e', '#9f3212']
+    for (let i = 1; i <= 3; i++) $(`#modo${i}`).css({
+        'color': `${colores[i-1]}`,
+        'pointer-events': 'none'
+    });
+    $('#creaNivell').css({
+        'pointer-events': 'none',
+        'color': '#838383'
+    })
+    $('#nomJugador').on('keyup', () => {
+        let colores = [];
+        let eventos = 'none';
+        let colorCrearNivell = '#838383'
+        if ($('#nomJugador').val() != "") {
+            colores = ['#4CF', '#8D1', '#D30'];
+            eventos = 'all'
+            colorCrearNivell = '#aaaaaa'
+        } else {
+            colores = ['#36a3cc', '#6aa01e', '#9f3212']
+            eventos = 'none'
+            colorCrearNivell = '#838383'
+        }
+        for (let i = 1; i <= 3; i++) $(`#modo${i}`).css({
+            'color': `${colores[i-1]}`,
+            'pointer-events': `${eventos}`
+        });
+        $('#creaNivell').css({
+            'pointer-events': `${eventos}`,
+            'color': `${colorCrearNivell}`
+        })
+    });
+}
+
+function obrirCreadorNivell() {
+    $('#menu').hide();
+    $('#creadorNivell').show();
+
+    $('#btnCreadorJugar').click(function() {
+        joc.creaNivell();
+    });
+}
+
+function crearMur() {
+
 }
