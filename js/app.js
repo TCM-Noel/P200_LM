@@ -144,6 +144,7 @@ function prepararBotons() {
 function obrirCreadorNivell() {
     $('#menu').hide();
     $('#creadorNivell').show();
+    crearMur();
 
     $('#btnCreadorJugar').click(function() {
         joc.creaNivell();
@@ -151,5 +152,5 @@ function obrirCreadorNivell() {
 }
 
 function crearMur() {
-
+    $('#requadreCreadorNivell');
 }
