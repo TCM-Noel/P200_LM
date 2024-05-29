@@ -63,6 +63,7 @@ $(document).ready(function() {
         reproduceMusicaStop('startMusic');
         reproduceMusicaPlay('modeMusic');
         joc.nomJugador = $('#nomJugador').val();
+        joc.isGuardat = false;
         $('#menu').hide(); 
         $('#principal').show(); 
         joc.inicialitza(modalidad); // Inicializa el juego con la modalidad seleccionada
@@ -87,7 +88,6 @@ function animacio() {
 }
 
 function tornarAlMenu(){ 
-    joc.isGuardat = false;
     location.href="index.html";
 }
 
