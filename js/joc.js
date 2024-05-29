@@ -4,6 +4,7 @@
 
 class Joc {
     constructor(canvas, ctx) {
+        this.musica=true;
         this.canvas = canvas;
         this.ctx = ctx;
         this.amplada = canvas.width;
@@ -75,8 +76,10 @@ class Joc {
         } else if (this.isGuanyat) {
             $('#missatgeModal').text('Has guanyat!')
             $('#modal').fadeIn(200);
-            reproduceMusicaStop('modeMusic');
-            reproduceMusicaPlay('winMusic');
+            if(this.musica){
+                reproduceMusicaStop('modeMusic');
+                reproduceMusicaPlay('winMusic');
+            }
             let puntsJugador = this.calcularPuntuacio(); // calculem puntuacio
             if (!this.isGuardat) {
                 afegirPuntuacio(this.nomJugador, puntsJugador);
