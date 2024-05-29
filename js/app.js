@@ -92,7 +92,7 @@ function tornarAlMenu(){
 }
 
 function afegirPuntuacio(nom, punts) {
-    puntuacionesStorage.push({ nom, punts });
+    puntuacionesStorage.push({ namePlayer: nom, punts });
     localStorage.setItem('puntuaciones', JSON.stringify(puntuacionesStorage)); // Guardar en localStorage
     actualizarListaPuntuacions();
 }
@@ -111,12 +111,13 @@ function actualizarListaPuntuacions() {
 
     let llistaPuntuacions = document.getElementById('llistaPuntuacions');
     llistaPuntuacions.innerHTML = '';
-    puntuacionesStorage.forEach(puntuacio => {
+    for (let i=0; i < puntuacionesStorage.length && i < 5; i++) {
         let puntuacioDiv = document.createElement('div'); // Crear un div
         puntuacioDiv.className = 'puntuacioFinal'; // Añadir la clase
         // Añadir el contenido del div con el nombre y la puntuación
-        puntuacioDiv.innerHTML = `<span>${puntuacio.nom}</span><span class="puntuacioJugador">${puntuacio.punts}</span>`;
+        console.log(puntuacionesStorage)
+        puntuacioDiv.innerHTML = `<span>${puntuacionesStorage[i]['namePlayer']}</span><span class="puntuacioJugador">${puntuacionesStorage[i].punts}</span>`;
         // Añadir el div a la lista
         llistaPuntuacions.appendChild(puntuacioDiv);
-    });
+    }
 }
