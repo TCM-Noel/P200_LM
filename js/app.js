@@ -51,17 +51,21 @@ $(document).ready(function() {
     });
 
     $('#activarVolum').click(function() {
+        joc.musica=true;
         reproduceMusicaPlay('startMusic');
     });
 
     $('#desactivarVolum').click(function() {
+        joc.musica=false;
         reproduceMusicaStop('startMusic');
     });
 
     function iniciarJuego(modalidad) {
         console.log(modalidad + " seleccionada");
         reproduceMusicaStop('startMusic');
-        reproduceMusicaPlay('modeMusic');
+        if(joc.musica){
+            reproduceMusicaPlay('modeMusic');
+        }
         joc.nomJugador = $('#nomJugador').val();
         joc.isGuardat = false;
         $('#menu').hide(); 
