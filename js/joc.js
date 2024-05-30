@@ -73,6 +73,10 @@ class Joc {
         if (this.vides==0) {
             $('#missatgeModal').text('Has perdut!')
             $('#modal').fadeIn(200);
+            if(this.musica){
+                reproduceMusicaStop('modeMusic');
+                reproduceMusicaPlay('loseMusic');
+            }
         } else if (this.isGuanyat) {
             $('#missatgeModal').text('Has guanyat!')
             $('#modal').fadeIn(200);
