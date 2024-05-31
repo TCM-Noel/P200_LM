@@ -171,9 +171,9 @@ body {
     position: absolute;
     left: 50%;
     top: 45%;
+    transform: translate(-50%, -50%);
     width: 740px;
     height: 400px;
-    transform: translate(-50%, -50%);
     background-color: #2e2e2e;
 }
 
@@ -221,6 +221,10 @@ body {
 /** ------------------- JUEGO ------------------- **/
 
 #principal {
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
     width: 960px;
     margin: 20px auto;
     padding: 20px;
