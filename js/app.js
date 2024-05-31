@@ -151,12 +151,20 @@ function prepararBotons() {
 }
 
 function obrirCreadorNivell() {
+    if(joc.musica){
+        reproduceMusicaStop('startMusic');
+        reproduceMusicaPlay('creatorMusic');
+    }
     $('#menu').hide();
     $('#creadorNivell').show();
     crearMur();
 
     $('#btnCreadorVolver').click(() => {
         resetBotons();
+        if(joc.musica){
+            reproduceMusicaStop('creatorMusic');
+            reproduceMusicaPlay('startMusic');
+        }
         for (let i = 0; i < 5; i++) {
             for (let j = 0; j < 10; j++) {
                 $(`#btnCreadorF${i}C${j}`).remove();
@@ -172,6 +180,7 @@ function obrirCreadorNivell() {
 
     $('#btnCreadorJugar').click(function() {
         joc.creaNivell(arrayMur);
+        reproduceMusicaStop('creatorMusic');
         iniciarJuego('modalidadPerso');
     });
 
