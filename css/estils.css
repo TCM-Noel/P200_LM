@@ -174,7 +174,7 @@ body {
     width: 740px;
     height: 400px;
     transform: translate(-50%, -50%);
-    background-color: #b1f0a4;
+    background-color: #2e2e2e;
 }
 
 .btnCreadorAbajo {
@@ -202,8 +202,20 @@ body {
     left: 87.5%;
 }
 
-.bloc {
-    
+.btnCreador {
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    width: 8.9%;
+    height: 35px;
+    margin-top: 1%;
+}
+
+.btnCreadorDesactivat {
+    background-color: none;
+}
+
+.btnCreadorActivat {
+    background-color: green;
 }
 
 /** ------------------- JUEGO ------------------- **/

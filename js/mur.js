@@ -43,6 +43,10 @@ class Mur {
                     "aa      aa",
                     "  aaaaaa  ",
                 ]
+            },
+            'modalidadPerso': {
+                color: "#D30", // vermell
+                totxos:[]
             }
         }
     }
@@ -85,7 +89,7 @@ class Mur {
     }
 
     crearMur(nouMur) {
-        this.murs.append(nouMur);
+        this.murs['modalidadPerso'].totxos = nouMur;
     }
      
     defineixNivells(){

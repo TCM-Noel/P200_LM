@@ -2,13 +2,17 @@
 * APLICACIÓ
 */
 var puntuacionesStorage = []; // Inicializar la variable como un array vacío
+var arrayMur = [];
 
 $(document).ready(function() {
 
     const storedPuntuacions = localStorage.getItem('puntuaciones');
     if (storedPuntuacions) {
+        $('#sensePuntuacio').hide();
         puntuacionesStorage = JSON.parse(storedPuntuacions);
         actualizarListaPuntuacions();
+    } else {
+        $('#sensePuntuacio').show();
     }
 
     let myCanvas = document.getElementById("joc");
@@ -44,21 +48,22 @@ $(document).ready(function() {
         joc.musica=false;
         reproduceMusicaStop('startMusic');
     });
-
-    function iniciarJuego(modalidad) {
-        console.log(modalidad + " seleccionada");
-        reproduceMusicaStop('startMusic');
-        if(joc.musica){
-            reproduceMusicaPlay('modeMusic');
-        }
-        joc.nomJugador = $('#nomJugador').val();
-        joc.isGuardat = false;
-        $('#menu').hide(); 
-        $('#principal').show(); 
-        joc.inicialitza(modalidad); // Inicializa el juego con la modalidad seleccionada
-        animacio();
-    }
 });
+
+function iniciarJuego(modalidad) {
+    console.log(modalidad + " seleccionada");
+    reproduceMusicaStop('startMusic');
+    if(joc.musica){
+        reproduceMusicaPlay('modeMusic');
+    }
+    joc.nomJugador = $('#nomJugador').val();
+    joc.isGuardat = false;
+    $('#menu').hide(); 
+    $('#creadorNivell').hide();
+    $('#principal').show(); 
+    joc.inicialitza(modalidad); // Inicializa el juego con la modalidad seleccionada
+    animacio();
+}
 
 function reproduceMusicaPlay(queMusica) {
     let startMusic = document.getElementById(`${queMusica}`);
@@ -150,11 +155,56 @@ function obrirCreadorNivell() {
     $('#creadorNivell').show();
     crearMur();
 
-    $('#btnCreadorJugar').click(function() {
-        joc.creaNivell();
+    $('#btnCreadorVolver').click(() => {
+        resetBotons();
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < 10; j++) {
+                $(`#btnCreadorF${i}C${j}`).remove();
+            }
+        }
+        $('#menu').show();
+        $('#creadorNivell').hide();
+    })
+
+    $('#btnCreadorReset').click(function() {
+        resetBotons();
     });
+
+    $('#btnCreadorJugar').click(function() {
+        joc.creaNivell(arrayMur);
+        iniciarJuego('modalidadPerso');
+    });
+
+    function resetBotons() {
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < 10; j++) {
+                if ($(`#btnCreadorF${i}C${j}`).hasClass('btnCreadorActivat')) {
+                    $(`#btnCreadorF${i}C${j}`).removeClass('btnCreadorActivat');
+                    $(`#btnCreadorF${i}C${j}`).addClass('btnCreadorDesactivat');
+                    arrayMur[i][j] = '';
+                }
+            }
+        }
+    }
 }
 
 function crearMur() {
-    $('#requadreCreadorNivell');
+    for (let i = 0; i < 5; i++) {
+        arrayMur.push([]);
+        $('#requadreCreadorNivell').append(`<div id="creadorFila${i}"></div>`);
+        for (let j = 0; j < 10; j++) {
+            arrayMur[i].push('');
+            $(`#creadorFila${i}`).append(`<input type="button" class="btnCreador btnCreadorDesactivat" id="btnCreadorF${i}C${j}">`);
+            $(`#btnCreadorF${i}C${j}`).click( () => {
+                if ($(`#btnCreadorF${i}C${j}`).hasClass('btnCreadorActivat')) {
+                    $(`#btnCreadorF${i}C${j}`).removeClass('btnCreadorActivat')
+                    arrayMur[i][j] = '';
+                } else {
+                    $(`#btnCreadorF${i}C${j}`).addClass('btnCreadorActivat')
+                    arrayMur[i][j] = 'a';
+                }
+            })
+        }
+    }
+    
 }

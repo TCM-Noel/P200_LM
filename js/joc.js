@@ -4,7 +4,7 @@
 
 class Joc {
     constructor(canvas, ctx) {
-        this.musica=true;
+        this.musica = false;
         this.canvas = canvas;
         this.ctx = ctx;
         this.amplada = canvas.width;
@@ -12,8 +12,8 @@ class Joc {
         this.vides = 3;
         this.modalidad = '';
         this.isGuanyat = false;
-        this.isCaigut = false;
-        this.comptadorEnrere = false; 
+        this.isCaigut = true;
+        this.comptadorEnrere = true; 
         this.tempsInicial;
         this.nomJugador = '';
         this.isGuardat = false;
@@ -42,6 +42,14 @@ class Joc {
     }
 
     inicialitza(modalidad){
+        this.cuentaAtras();
+        setTimeout(() => {
+            this.isCaigut = false;
+            this.comptadorEnrere = false;
+        }, 3000);
+        this.bola.vx = 0;
+        this.bola.vy = -1.3;
+
         this.pala.draw(this.ctx);
         this.bola.draw(this.ctx);
         this.mur.generaMur(modalidad);
@@ -102,12 +110,11 @@ class Joc {
                 this.comptadorEnrere = false;
             }, 3000);
         }
-        //console.log(joc.pala.posicio);
     }
 
-    // TODO: Funcion que crea el array que se le pasa a Mur
-    creaNivell(nouNivell) {
-        this.mur.crearMur(/* ARRAY */)
+    // Funció que crea el mur nou
+    creaNivell(arrayMur) {
+        this.mur.crearMur(arrayMur)
     }
     
     actualizarVidas() {

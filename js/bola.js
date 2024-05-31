@@ -6,8 +6,8 @@ class Bola {
     constructor(puntPosicio, radi) {
         this.radi = radi;
         this.posicio = puntPosicio;
-        this.vx = -1,3;
-        this.vy = -1,3;
+        this.vx = -1.3;
+        this.vy = -1.3;
         this.color = "#fff";
     }
 
@@ -57,8 +57,7 @@ class Bola {
             this.vx = -this.vx;
         }
 
-        //Xoc lateral inferior
-        if (trajectoria.puntB.y - this.radi >= joc.alcada) {
+        if (trajectoria.puntB.y - this.radi >= joc.alcada) { //Xoc lateral inferior
             joc.vides--;
             this.posicio.x = joc.amplada / 2;
             this.posicio.y = joc.alcada - joc.alcada / 4;
