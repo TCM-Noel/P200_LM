@@ -174,6 +174,7 @@ class Joc {
         switch (this.modalidad) {
             case 'modalidad1':
                 return 1.25;
+            case 'modalidadPerso':
             case 'modalidad2':
                 return 1.50;
             case 'modalidad3':
