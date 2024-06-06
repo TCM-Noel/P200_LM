@@ -3,20 +3,21 @@
 */
 
 class Totxo{
-
+    //constructor de totxo
     constructor(puntPosicio, amplada, alcada){
         this.amplada=amplada; 
         this.alcada=alcada; // mides
         this.tocat=false; // marquem els totxos tocats per la bola => no es pintaran
         this.posicio = puntPosicio; // posició, en píxels respecte el canvas
-        this.color;
+        this.color;//color del totxo
         this.punts;
     }
-
+    //retorna el àrea del totxo
     get area() {
         return this.amplada * this.alcada;
     }
-    
+
+    //dibuixat del totxo
     draw(ctx) {
         if (!this.tocat) {
             ctx.save();
@@ -25,7 +26,7 @@ class Totxo{
             ctx.restore();
         }
     }
-    
+    //comprova si un punt està contingut dins de un rectangle
     puntInteriorRectangle(punt){
         return (
             punt.x >= this.posicio.x &&

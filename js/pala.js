@@ -10,7 +10,7 @@ class Pala {
         this.posicio = puntPosicio;
         this.vy = 0;     
         this.vx = 2; // velocitat = 10 píxels per fotograma
-        this.color = "#D30"; 
+        this.color = "#D30"; //color de la pala
     }
 
     //actualitzar pala: control de teclat i moviment

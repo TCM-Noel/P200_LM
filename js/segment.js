@@ -3,13 +3,13 @@
 */
 
 class Segment{
-
+    //constructor de segment
     constructor(puntA, puntB){
         this.puntA = puntA;
         this.puntB = puntB;
         this.color = "#3F3";
     }
-    
+    //dibuixat de segment
     draw() {
         ctx.beginPath();
         ctx.strokeStyle = this.color;      
@@ -55,7 +55,7 @@ class Segment{
             } 
         }
     }
-
+    //diu si dos segments tallen entre ells
     esTallen (segment2){
         let s1p1 = this.puntA;
         let s1p2 = this.puntB;
@@ -71,7 +71,7 @@ class Segment{
             control(s1p1,s2p1,s2p2) != control(s1p2,s2p1,s2p2)
         );
     }
-
+    //verifica si un segment conté un punt 
     contePunt(p1,p2, punt){
         return (this.valorDinsInterval(p1.x, punt.x, p2.x) || this.valorDinsInterval(p1.y, punt.y, p2.y)); 
     }
