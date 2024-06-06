@@ -11,6 +11,10 @@ class Bola {
         this.color = "#fff";
     }
 
+    /**
+     * Funció que pinta la bola al canvas
+     * @param {*} ctx context del canvas
+     */
     draw(ctx) {
         ctx.beginPath();
         ctx.fillStyle = this.color;
@@ -19,11 +23,19 @@ class Bola {
         ctx.closePath();
     }
 
+    /**
+     * Funció que mou la bola
+     * @param {*} x funció que canvia la posició x de la bola
+     * @param {*} y funció que canvia la posició y de la bola
+     */
     mou(x, y) {
         this.posicio.x += x;
         this.posicio.y += y;
     }
 
+    /**
+     * Funció update de la bola
+     */
     update() {
         let puntActual = this.posicio;
         let puntSeguent = new Punt(this.posicio.x + this.vx, this.posicio.y + this.vy);
@@ -31,8 +43,12 @@ class Bola {
         let exces;
         let xoc = false;
         
-        //XOC AMB ELS LATERALS DEL CANVAS
-            
+        /**
+         * XOC AMB ELS LATERALS DEL CANVAS
+         * 
+         * Cadascún dels ifs controla els laterals corresponents als que fan referència
+         */
+
         if(trajectoria.puntB.y - this.radi <= 0){ //Xoc lateral superior
             exces = (trajectoria.puntB.y - this.radi)/this.vy;
             this.posicio.x = trajectoria.puntB.x - exces*this.vx;
@@ -70,17 +86,17 @@ class Bola {
             }
         }
         
-        //Xoc amb la pala
+        // Part de codi que controla el xoc de la bola amb la pala
         let colisioPala = this.interseccioSegmentRectangle(trajectoria, joc.pala, false);
         if (colisioPala) {
             switch (colisioPala.vora) {
                 case "superior":
-                    // Determina la posición relativa en la pala donde ocurrió la colisión
+                    // Determina la posició relativa a la pala on va passar la col·lisió
                     let palaCentroX = joc.pala.posicio.x + joc.pala.amplada / 2;
                     let impactPos = (this.posicio.x - palaCentroX) / (joc.pala.amplada / 2);
                     
-                    // Ajusta vx y vy en función de la posición de impacto
-                    let angleMax = Math.PI / 3;  // 60 grados
+                    // Ajusta vx i vy en funció de la posició d'impacte
+                    let angleMax = Math.PI / 3;  // 60 graus
                     let angle = impactPos * angleMax;
                     let speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
                     this.vx = speed * Math.sin(angle);
@@ -88,15 +104,13 @@ class Bola {
 
                     break;
                 case "esquerra":
-                    this.vx = -Math.abs(this.vx); // Asegurar que la bola rebote a la izquierda
-                    //this.posicio.x = joc.pala.posicio.x - this.radi-1; // Mover la bola fuera de la pala
+                    this.vx = -Math.abs(this.vx); // Assegura que la bola reboti a l'esquerra
                     break;
                 case "dreta":
-                    this.vx = Math.abs(this.vx); // Asegurar que la bola rebote a la derecha
-                    //this.posicio.x = joc.pala.posicio.x + joc.pala.amplada + this.radi+1; // Mover la bola fuera de la pala
+                    this.vx = Math.abs(this.vx); // Assegura que la bola reboti a la dreta
                     break;
-                case "inferior":
-                    this.posicio.y = joc.pala.posicio.y + joc.pala.alcada + this.radi+1;
+                case "inferior": // Ajusta la posició de la bola al segment superior de la pala en el cas de que reboti en la part inferior
+                    this.posicio.y = joc.pala.posicio.y + joc.pala.alcada + this.radi+1; 
                     break;
             }
             xoc = true;
@@ -123,10 +137,10 @@ class Bola {
                         xoc = true;
                     }
                     else {
-                        // Verificació colisió amb esquines totxos
+                        // Verifica el rebot en les cantonades dels totxos
                         let colisioEsquina = this.interseccioSegmentEsquina(trajectoria, totxo);
                         if (colisioEsquina) {
-                            // Cambia la dirección de ambas componentes de la velocidad
+                            // Cambia la direcció de la bola
                             this.vx = -this.vx;
                             this.vy = -this.vy;
                             totxo.tocat = true;
@@ -137,20 +151,27 @@ class Bola {
             }
         }
         
-        if (!xoc) {
+        if (!xoc) { // Condició que calcila la següent posició conforme la trajectoria
             this.posicio.x = trajectoria.puntB.x;
             this.posicio.y = trajectoria.puntB.y;
         }
     }
     
+    /**
+     * Funció que controla els rebots amb les cantonades dels totxos
+     * @param {*} segment segment que representa la cantonada tocada
+     * @param {*} rectangle mesures del bloc en el que fa referència la cantonada
+     * @returns si s'ha tocat una cantonada o no
+     */
     interseccioSegmentEsquina(segment, rectangle) {
         const esquinas = [
-            new Punt(rectangle.posicio.x, rectangle.posicio.y),  // Esquina superior izquierda
-            new Punt(rectangle.posicio.x + rectangle.amplada, rectangle.posicio.y),  // Esquina superior derecha
-            new Punt(rectangle.posicio.x, rectangle.posicio.y + rectangle.alcada),  // Esquina inferior izquierda
-            new Punt(rectangle.posicio.x + rectangle.amplada, rectangle.posicio.y + rectangle.alcada)  // Esquina inferior derecha
+            new Punt(rectangle.posicio.x, rectangle.posicio.y),  // Cantonada superior izquierda
+            new Punt(rectangle.posicio.x + rectangle.amplada, rectangle.posicio.y),  // Cantonada superior dreta
+            new Punt(rectangle.posicio.x, rectangle.posicio.y + rectangle.alcada),  // Cantonada inferior esquerra
+            new Punt(rectangle.posicio.x + rectangle.amplada, rectangle.posicio.y + rectangle.alcada)  // Cantonada inferior dreta
         ];
 
+        // For que controla l'impacte amb els punts de les cantonades
         for (let esquina of esquinas) {
             if (this.distancia(segment.puntB, esquina) <= this.radi) {
                 return true;
@@ -159,6 +180,12 @@ class Bola {
         return false;
     }
 
+    /**
+     * Funció que controla l'impacte en tot un segment passat per paràmetre
+     * @param {*} segment segment amb el que vol controlar-se l'impacte
+     * @param {*} rectangle bloc del qual es vol controlar el rebot
+     * @returns Informació genèrica del punt i segment que es tocarà
+     */
     interseccioSegmentRectangle(segment, rectangle) {
         let puntI;
         let distanciaI;
@@ -234,6 +261,12 @@ class Bola {
         }
     }
 
+    /**
+     * Funció que contorla la dinstància entre dos punts
+     * @param {*} p1 punt 1
+     * @param {*} p2 punt 2
+     * @returns retorna la distància exacta
+     */
     distancia(p1, p2) {
         return Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));
     }
