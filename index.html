@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>BreakOut 23-24 - Grup 1</title>
-    <link rel="stylesheet" href="css/estils.css">
+    <link rel="stylesheet" href="css/estils.css"> <!-- Estils css -->
 </head>
 <body>
 
+    <!-- Panell sempre visible de puntuacions -->
     <div id="panellPuntuacio">
         <h1>PUNTUACIONS</h1>
         <div id="llistaPuntuacions">
@@ -15,6 +16,7 @@
         </div>
     </div>
 
+    <!-- Panell sempre visible d'instruccions -->
     <div id="instrucciones">
         <p style="color:#d3d340;">Per moure't usa:</p>
         <p><span class="tecla">A</span><span class="tecla">D</span></p>
@@ -22,6 +24,7 @@
         <p><span class="tecla">⬅</span><span class="tecla">➡</span></p>
     </div>
 
+    <!-- Menú princial del joc -->
     <div id="menu">
         <div id="panelCentral">
             <h1>BREAKOUT 2023-2024</h1>
@@ -39,6 +42,7 @@
         </div>   
     </div>
 
+    <!-- Div del creador de nivell, no visible incialment -->
     <div id="creadorNivell" style="display:none;">
         <div id="requadreCreadorNivell">
             <button class="btnCreadorAbajo" id="btnCreadorVolver">TORNAR</button>
@@ -47,6 +51,7 @@
         </div>
     </div>
     
+    <!-- Panell de joc, no visible inicialment -->
     <div id="principal" style="display:none;">
         <canvas id="joc"></canvas>
         <div id="modal" style="display: none;">
@@ -61,12 +66,14 @@
         </div>
     </div>
 
+    <!-- Audios del joc -->
     <audio id="startMusic" src="audio/Zelda Link to the Past - Hyrule Field (Gameboy 8-bit).mp3"></audio>
     <audio id="modeMusic" src="audio/Blue (Da Ba Dee) [8 Bit Tribute to Eiffel 65] - 8 Bit Universe-trimmed.mp3" loop></audio>
     <audio id="winMusic" src="audio/Victory! (Trainer) - Pokémon Gold Silver Crystal Soundtrack.mp3"></audio>
     <audio id="creatorMusic" src="audio/Elevator Music (8-bit Version).mp3"></audio>
     <audio id="loseMusic" src="audio/Lose sound effects.mp3"></audio>
     
+    <!-- Scripts del joc -->
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/joc.js"></script>
