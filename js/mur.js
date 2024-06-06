@@ -3,7 +3,7 @@
 */
 
 class Mur {
-    
+    //constructor del mur
     constructor(canvas, ctx) {
         this.canvas = canvas;
         this.ctx = ctx;
@@ -12,8 +12,8 @@ class Mur {
         this.totxoAmplada; // Amplada de cada totxo
         this.totxoAlcada; // Alçada de cada totxo
         this.padding; // Espai entre totxos
-        this.totxos = [];
-        this.murs = {
+        this.totxos = [];//array amb el que guardarem els totxos
+        this.murs = {//murs de les diferents modalitats
             'modalidad1': {
                 color: "#4CF", // blue cel
                 totxos:[
@@ -51,15 +51,18 @@ class Mur {
         }
     }
 
+    //funció que dada la modalitat, genera el mur
     generaMur(modalidad){
+        //càlcul de la posició dels totxos
         this.offsetTop = 5;
         this.offsetLeft = 6.5;
         this.totxoAmplada = (joc.amplada-this.offsetLeft*2-2*this.columnaCount) / this.columnaCount;
         this.totxoAlcada = joc.alcada / (this.filaCount * 2+2); 
         this.padding = (joc.amplada-(this.totxoAmplada*this.columnaCount))/this.columnaCount-1; 
 
+        //varible per guardar el nivell seleccionat
         let nivellSeleccionat = this.defineixNivells()[modalidad];
-
+        //iteració en la que ja creem els totxos i els guardem en el array
         for (let c = 0; c < this.columnaCount; c++) {
             this.totxos[c] = [];
             for (let r = 0; r < this.filaCount; r++) {
@@ -76,7 +79,7 @@ class Mur {
             }
         }
     }
-
+    //dibuixat dels murs
     draw(ctx){
         for (let c = 0; c < this.columnaCount; c++) {
             for (let r = 0; r < this.filaCount; r++) {
@@ -87,11 +90,11 @@ class Mur {
             }
         }
     }
-
+    //funcio que utilitzem per poder crear murs personalitzats en el creador de nivells
     crearMur(nouMur) {
         this.murs['modalidadPerso'].totxos = nouMur;
     }
-     
+    //retorna la modalitat seleccionada
     defineixNivells(){
         return this.murs;
     }

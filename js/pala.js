@@ -3,6 +3,7 @@
 */
 
 class Pala {
+    //constructor de la pala
     constructor(puntPosicio, amplada, alcada){      
         this.amplada = amplada;
         this.alcada = alcada;
@@ -12,6 +13,7 @@ class Pala {
         this.color = "#D30"; 
     }
 
+    //actualitzar pala: control de teclat i moviment
     update(){
         if (joc.key.LEFT.pressed || joc.key.RIGHT.pressed) {
             if (joc.key.LEFT.pressed) {
@@ -21,7 +23,7 @@ class Pala {
             }
         }
     }
-   
+    //dibuixat de la pala
     draw(ctx) {
         ctx.save();
         ctx.fillStyle = this.color;
@@ -29,6 +31,7 @@ class Pala {
         ctx.restore();
     }
 
+    //funció que controla el moviment i controla que no surti del canvas
     mou(x,y){
         if (this.posicio.x >= 0 /* LEFT */ && this.posicio.x <= joc.canvas.width - this.amplada /* RIGHT */) {
             this.posicio.x += x;
